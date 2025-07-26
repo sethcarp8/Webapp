@@ -65,18 +65,18 @@ export default function Home() {
             {[
               {
                 icon: "🏠",
-                title: "Property Maintenance",
-                desc: "Helping keep your home in pristine shape — inside and out.",
+                title: "Property Cleaning & Maintenance",
+                desc: "Helping keep your home in pristine condition — inside and out.",
               },
               {
                 icon: "👥",
                 title: "Guest Support",
-                desc: "Keeping things easy and comfortable for your guests.",
+                desc: "Keeping things easy and comfortable for your family and guests.",
               },
               {
                 icon: "📱",
                 title: "Owner Communication",
-                desc: "Helping you stay connected, even from a distance.",
+                desc: "Helping you stay informed and connected, even from a distance.",
               },
             ].map((card) => (
               <article
@@ -173,10 +173,10 @@ export default function Home() {
           <h3 className="text-2xl font-bold mb-2">Kauai Property Solutions</h3>
           <p className="text-gray-300 mb-6">Personal home and guest care</p>
           <a
-            href="mailto:info@kauaipropertysolutions.com"
+            href="mailto:kauaipropertysolutions@gmail.com"
             className="text-blue-400 hover:text-blue-300 font-medium transition-colors"
           >
-            info@kauaipropertysolutions.com
+            kauaipropertysolutions@gmail.com
           </a>
           <hr className="border-gray-700 my-8" />
           <p className="text-gray-400 text-sm">
