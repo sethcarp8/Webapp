@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow anyone to write to the contacts collection (for the contact form)
+    match /contacts/{document} {
+      allow write: if true;
+      allow read: if false;  // Only backend functions should read
+    }
+    
+    // Gmail tokens - only backend access
+    match /__gmail/{document} {
+      allow read, write: if false;
+    }
+    
+    // Logs - only backend access
+    match /__logs/{document} {
+      allow read, write: if false;
+    }
+    
+    // Default: deny all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
