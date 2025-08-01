@@ -1,0 +1,6 @@
+# Exclude Firebase Functions from Vercel deployment
+functions/
+node_modules/
+.next/
+.env.local
+.env.*.local 
