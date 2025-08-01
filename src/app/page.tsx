@@ -24,12 +24,56 @@ export default function Home() {
       message: string;
     };
 
+    // Add a timeout promise
+    const timeoutPromise = new Promise((_, reject) => {
+      setTimeout(() => reject(new Error('Request timed out after 30 seconds')), 30000);
+    });
+
     try {
-      await addDoc(collection(db, "contacts"), data);
+      console.log('Submitting contact form:', data);
+      console.log('Firebase db instance:', db);
+      
+      // Add timestamp to the data
+      const submissionData = {
+        ...data,
+        createdAt: new Date().toISOString(),
+        timestamp: Date.now()
+      };
+      
+      // Race between the actual submission and timeout
+      const docRef = await Promise.race([
+        addDoc(collection(db, "contacts"), submissionData),
+        timeoutPromise
+      ]);
+      
+      console.log('Document written with ID:', docRef);
       setSubmitted(true);
+      
+      // Reset form after successful submission
+      (e.target as HTMLFormElement).reset();
     } catch (err) {
       console.error("Contact form error:", err);
-      alert("Sorry, something went wrong. Please email us directly.");
+      
+      // More detailed error messages
+      let errorMessage = "Sorry, something went wrong. ";
+      
+      if (err instanceof Error) {
+        if (err.message.includes('timeout')) {
+          errorMessage += "The request timed out. Please check your internet connection and try again.";
+        } else if (err.message.includes('Missing or insufficient permissions')) {
+          errorMessage += "Permission denied. Please contact support.";
+        } else if (err.message.includes('Failed to get document because the client is offline')) {
+          errorMessage += "You appear to be offline. Please check your internet connection.";
+        } else if (err.message.includes('Firebase')) {
+          errorMessage += "Firebase configuration error. Please contact support.";
+        } else {
+          errorMessage += err.message || "Please email us directly at contact@kauaipropertysolutions.com";
+        }
+      } else {
+        errorMessage += "Please email us directly at contact@kauaipropertysolutions.com";
+      }
+      
+      alert(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
