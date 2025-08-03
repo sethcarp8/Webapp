@@ -28,19 +28,12 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || '',
 };
 
-console.log('Firebase config loaded:', {
-  ...firebaseConfig,
-  apiKey: firebaseConfig.apiKey ? '***' : 'MISSING',
-  appId: firebaseConfig.appId ? '***' : 'MISSING'
-});
-
 let app;
 let db: Firestore;
 
 try {
   app = getApps().length ? getApp() : initializeApp(firebaseConfig);
   db = getFirestore(app);
-  console.log('Firebase initialized successfully');
 } catch (error) {
   console.error('Firebase initialization error:', error);
   throw new Error('Failed to initialize Firebase. Please check your configuration.');

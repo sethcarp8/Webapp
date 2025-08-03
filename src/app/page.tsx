@@ -24,15 +24,12 @@ export default function Home() {
       message: string;
     };
 
-    // Add a timeout promise
-    const timeoutPromise = new Promise((_, reject) => {
-      setTimeout(() => reject(new Error('Request timed out after 30 seconds')), 30000);
-    });
-
     try {
-      console.log('Submitting contact form:', data);
-      console.log('Firebase db instance:', db);
-      
+      // Add a timeout promise
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Request timed out after 30 seconds')), 30000);
+      });
+
       // Add timestamp to the data
       const submissionData = {
         ...data,
@@ -46,7 +43,6 @@ export default function Home() {
         timeoutPromise
       ]);
       
-      console.log('Document written with ID:', docRef);
       setSubmitted(true);
       
       // Reset form after successful submission

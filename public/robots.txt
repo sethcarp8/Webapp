@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Disallow sensitive paths
+Disallow: /api/
+Disallow: /_next/
+Disallow: /functions/
+Disallow: /.env
+Disallow: /.git
+
+# Security: Prevent access to configuration files
+Disallow: /*.json
+Disallow: /*.config.js
+Disallow: /*.config.ts
+
+# Crawl delay to be respectful
+Crawl-delay: 1
+
+# Sitemap (add your sitemap URL when available)
+# Sitemap: https://www.kauaipropertysolutions.com/sitemap.xml 
