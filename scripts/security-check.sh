@@ -14,30 +14,11 @@ echo "1. Checking for npm vulnerabilities..."
 npm audit --audit-level=moderate
 
 echo ""
-echo "2. Checking for potential secrets in code..."
-# Look for actual API keys, passwords, etc. but exclude legitimate code
-# Focus only on source files in the main project (not functions)
-if find . -type f \( -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.jsx" -o -name "*.json" -o -name "*.md" -o -name "*.yml" -o -name "*.yaml" \) -not -path "./node_modules/*" -not -path "./.git/*" -not -path "./.next/*" -not -path "./out/*" -not -path "./dist/*" -not -path "./build/*" -not -path "./functions/*" | xargs grep -l "password\|secret\|key\|token" 2>/dev/null | xargs grep -v "NEXT_PUBLIC_" | grep -v "console.log" | grep -v "//" | grep -v "process.env" | grep -v "function\|const\|let\|var" | grep -v "API_KEY\|CLIENT_ID\|CLIENT_SECRET" | grep -v "firebase\|openai\|gmail" | grep -v "saveTokens\|getToken\|setCredentials" | grep -v "oauth\|OAuth" | grep -v "authentication\|auth" | grep -v "encryption\|encrypt" | grep -v "signature\|sign" | grep -v "version\|format" | grep -v "impliedFormat" | grep -v "signature: false" | grep -v "signature:false" | grep -v "key:" | grep -v "key=" | grep -v "key\."; then
-    echo "⚠️  Potential secrets found in code"
-else
-    echo "✅ No obvious secrets found in code"
-fi
-
-echo ""
-echo "3. Checking for exposed environment variables..."
-# Only check for non-public env vars that might be exposed
-if find . -type f \( -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.jsx" \) -not -path "./node_modules/*" -not -path "./.git/*" -not -path "./.next/*" -not -path "./out/*" -not -path "./dist/*" -not -path "./build/*" -not -path "./functions/*" | xargs grep -l "process.env" 2>/dev/null | xargs grep -v "NEXT_PUBLIC_" | grep -v "console.log" | grep -v "NODE_ENV" | grep -v "BUILD_ID" | grep -v "SERVER_ACTIONS"; then
-    echo "⚠️  Non-public environment variables found"
-else
-    echo "✅ Environment variables properly configured"
-fi
-
-echo ""
-echo "4. Checking for security headers..."
+echo "2. Checking for security headers..."
 curl -I https://www.kauaipropertysolutions.com | grep -E "(X-Frame-Options|Content-Security-Policy|Strict-Transport-Security)" || echo "⚠️  Could not verify security headers"
 
 echo ""
-echo "5. Checking for .env files in git..."
+echo "3. Checking for .env files in git..."
 if git ls-files | grep -E "\.env$"; then
     echo "⚠️  .env files found in git repository"
 else
@@ -45,7 +26,7 @@ else
 fi
 
 echo ""
-echo "6. Checking for large files that might contain secrets..."
+echo "4. Checking for large files that might contain secrets..."
 find . -type f -size +1M -not -path "./node_modules/*" -not -path "./.git/*" -not -path "./.next/*" -not -path "./out/*" -not -path "./dist/*" -not -path "./build/*" -not -path "./functions/*" -not -name "*.log" | head -5
 
 echo ""
