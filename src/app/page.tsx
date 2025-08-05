@@ -38,7 +38,7 @@ export default function Home() {
       };
       
       // Race between the actual submission and timeout
-      const docRef = await Promise.race([
+      await Promise.race([
         addDoc(collection(db, "contacts"), submissionData),
         timeoutPromise
       ]);

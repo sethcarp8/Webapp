@@ -8,8 +8,9 @@ A modern, responsive landing page for Kauai Property Solutions built with Next.j
 - **Responsive Design**: Mobile-first approach with Tailwind CSS v4
 - **Contact Form**: Integrated with Firebase Firestore
 - **Auto-Reply System**: AI-powered email responses via OpenAI
-- **Gmail Integration**: Automatic draft creation for manual review
+- **Gmail Integration**: Automatic draft creation with label organization
 - **Accessibility**: WCAG compliant with proper ARIA labels
+- **Security**: Comprehensive security headers and CSP protection
 
 ## 🛠️ Tech Stack
 
@@ -19,6 +20,7 @@ A modern, responsive landing page for Kauai Property Solutions built with Next.j
 - **Database**: Firestore
 - **AI**: OpenAI GPT-4
 - **Email**: Gmail API with OAuth2
+- **Security**: Content Security Policy, Security Headers, Automated Scanning
 
 ## 📋 Prerequisites
 
@@ -82,14 +84,25 @@ webapp/
 ├── src/
 │   ├── app/
 │   │   ├── page.tsx          # Main landing page
-│   │   ├── layout.tsx        # Root layout
+│   │   ├── layout.tsx        # Root layout with security headers
 │   │   └── globals.css       # Global styles
 │   └── lib/
 │       └── firebase.ts       # Firebase client config
 ├── functions/
 │   └── src/
 │       └── index.ts          # Firebase Functions
-├── public/                   # Static assets
+├── public/
+│   ├── robots.txt            # Search engine directives
+│   └── .well-known/
+│       └── security.txt      # Security contact information
+├── scripts/
+│   └── security-check.sh     # Local security verification
+├── .github/
+│   └── workflows/
+│       └── security-scan.yml # Automated security scanning
+├── firestore.rules           # Database security rules
+├── firebase.json             # Firebase configuration
+├── next.config.ts            # Next.js config with security headers
 └── package.json
 ```
 
@@ -101,32 +114,89 @@ webapp/
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
+- `./scripts/security-check.sh` - Run local security checks
 
 ### Firebase Functions
 
 - `gmailAuthURL` - Gmail OAuth authorization URL
 - `oauthCallback` - OAuth callback handler
-- `contactAutoDraft` - Auto-reply email drafter
+- `contactAutoDraft` - Auto-reply email drafter with Gmail label organization
 
 ## 🚀 Deployment
 
-### Frontend (Vercel/Netlify)
+### Frontend (Vercel)
 ```bash
 npm run build
-# Deploy the .next folder to your hosting platform
+npx vercel --prod
 ```
 
 ### Backend (Firebase)
 ```bash
 firebase deploy --only functions
+firebase deploy --only firestore:rules
 ```
 
-## 🔐 Security
+## 🔐 Security Features
 
-- Firebase API keys are public (safe for client-side)
-- Sensitive secrets are stored in Firebase Secret Manager
-- Gmail OAuth tokens are stored securely in Firestore
-- All API calls are properly authenticated
+### Security Headers
+- **X-Frame-Options**: DENY (prevents clickjacking)
+- **Content-Security-Policy**: Comprehensive with Firebase support
+- **Strict-Transport-Security**: HTTPS enforcement
+- **X-Content-Type-Options**: nosniff
+- **X-XSS-Protection**: 1; mode=block
+- **Referrer-Policy**: strict-origin-when-cross-origin
+- **Permissions-Policy**: Camera, microphone, geolocation restrictions
+
+### Content Security Policy
+Allows necessary Firebase endpoints while maintaining security:
+- `https://firestore.googleapis.com` - Firestore database
+- `https://identitytoolkit.googleapis.com` - Firebase Auth
+- `https://securetoken.googleapis.com` - Secure token management
+- `https://firebaseinstallations.googleapis.com` - Firebase installations
+- `https://oauth2.googleapis.com` - OAuth authentication
+- `https://accounts.google.com` - Google account services
+
+### Automated Security Scanning
+- **GitHub Actions**: Weekly security scans (Mondays at 2 AM)
+- **NPM Audit**: Package vulnerability detection
+- **Lighthouse CI**: Performance and security audit
+- **PR Comments**: Automated security findings reporting
+- **Local Security Script**: Manual security verification
+
+### Database Security
+- **Firestore Rules**: Secure database access rules
+- **Secret Management**: Sensitive data in Firebase Secret Manager
+- **OAuth Security**: Secure Gmail token storage
+
+### Security Files
+- **robots.txt**: Search engine directives
+- **security.txt**: Security researcher contact information
+- **.gitignore**: Proper exclusion of sensitive files
+
+## 🛡️ Security Scanning
+
+### Automated Workflow
+The project includes comprehensive security scanning via GitHub Actions:
+
+```yaml
+# Runs on: push, pull_request, weekly schedule
+- NPM Audit: Package vulnerability detection
+- Lighthouse CI: Performance and security audit
+- Artifact Upload: Security reports retention
+- PR Comments: Automated security findings
+```
+
+### Local Security Checks
+Run security verification locally:
+```bash
+./scripts/security-check.sh
+```
+
+This script checks:
+- NPM vulnerabilities
+- Security headers
+- Git .env file exposure
+- Large file detection
 
 ## 📝 License
 
@@ -139,6 +209,12 @@ firebase deploy --only functions
 3. Make your changes
 4. Submit a pull request
 
+### Security Guidelines
+- All code changes trigger automated security scans
+- Security headers are automatically applied
+- Firebase rules are deployed with functions
+- Environment variables are properly configured
+
 ---
 
-Built with ❤️ using Next.js 15 and Firebase
+Built with ❤️ using Next.js 15, Firebase, and comprehensive security practices
