@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, type DocumentReference } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
 export default function Home() {
@@ -52,7 +52,7 @@ export default function Home() {
       const docRef = await Promise.race([
         addDoc(collection(db, "contacts"), submissionData),
         timeoutPromise
-      ]) as any;
+      ]) as DocumentReference;
       
       console.log('✅ Document written successfully:', docRef.id);
       setSubmitted(true);
