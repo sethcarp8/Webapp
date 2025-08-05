@@ -44,11 +44,14 @@ jobs:
             exit 1
           fi
 
+      - name: Generate audit report
+        run: npm audit --json > audit-report.json || echo "{}" > audit-report.json
+
       - name: Upload security report
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: security-audit-report
           path: |
-            npm-debug.log*
-            audit-report.json 
+            audit-report.json
+            npm-debug.log* 
