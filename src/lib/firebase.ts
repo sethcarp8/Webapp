@@ -3,7 +3,7 @@
 import { initializeApp, getApp, getApps } from 'firebase/app';
 import { getFirestore, type Firestore } from 'firebase/firestore';
 
-// Validate environment variables
+// Validate environment variables (only in development)
 const requiredEnvVars = [
   'NEXT_PUBLIC_FIREBASE_API_KEY',
   'NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN',
@@ -14,7 +14,8 @@ const requiredEnvVars = [
 
 const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
 
-if (missingVars.length > 0) {
+// Only log missing variables in development
+if (missingVars.length > 0 && process.env.NODE_ENV === 'development') {
   console.error('Missing Firebase environment variables:', missingVars);
   console.error('Please ensure all Firebase configuration is set in your environment variables.');
 }
