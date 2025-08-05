@@ -37,8 +37,8 @@ jobs:
       with:
         urls: |
           https://www.kauaipropertysolutions.com
-        uploadArtifacts: true
-        temporaryPublicStorage: true
+        uploadArtifacts: false
+        temporaryPublicStorage: false
       continue-on-error: true
       
     - name: Upload security reports
