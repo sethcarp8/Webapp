@@ -1,0 +1,58 @@
+name: Auto-merge Security Patches
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'package.json'
+      - 'package-lock.json'
+      - 'yarn.lock'
+      - 'pnpm-lock.yaml'
+
+jobs:
+  test-and-merge:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test --if-present
+
+      - name: Build project
+        run: npm run build
+
+      - name: Check for security labels
+        id: check-labels
+        run: |
+          if [[ "${{ github.event.pull_request.labels.*.name }}" == *"security"* ]]; then
+            echo "is_security=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_security=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Auto-merge security patches
+        if: steps.check-labels.outputs.is_security == 'true' && github.event.pull_request.user.login == 'dependabot[bot]'
+        run: |
+          gh pr merge ${{ github.event.pull_request.number }} --auto --merge
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Comment on non-security PRs
+        if: steps.check-labels.outputs.is_security == 'false' && github.event.pull_request.user.login == 'dependabot[bot]'
+        run: |
+          gh pr comment ${{ github.event.pull_request.number }} --body "This dependency update has been tested and is ready for manual review. Please review and merge when ready."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
