@@ -18,11 +18,15 @@ export default function Home() {
     e.preventDefault();
     setIsSubmitting(true);
 
+    console.log('🔄 Starting contact form submission...');
+
     const data = Object.fromEntries(new FormData(e.currentTarget)) as {
       name: string;
       email: string;
       message: string;
     };
+
+    console.log('📝 Form data:', { name: data.name, email: data.email, messageLength: data.message.length });
 
     try {
       // Add a timeout promise
@@ -37,23 +41,35 @@ export default function Home() {
         timestamp: Date.now()
       };
       
+      console.log('🔥 Attempting to write to Firebase...');
+      console.log('📊 Firebase config check:', {
+        hasApiKey: !!process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+        hasProjectId: !!process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+        hasAuthDomain: !!process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+      });
+      
       // Race between the actual submission and timeout
       const docRef = await Promise.race([
         addDoc(collection(db, "contacts"), submissionData),
         timeoutPromise
-      ]);
+      ]) as any;
       
+      console.log('✅ Document written successfully:', docRef.id);
       setSubmitted(true);
       
       // Reset form after successful submission
       (e.target as HTMLFormElement).reset();
     } catch (err) {
-      console.error("Contact form error:", err);
+      console.error("❌ Contact form error:", err);
       
       // More detailed error messages
       let errorMessage = "Sorry, something went wrong. ";
       
       if (err instanceof Error) {
+        console.log('🔍 Error type:', err.constructor.name);
+        console.log('🔍 Error message:', err.message);
+        console.log('🔍 Error stack:', err.stack);
+        
         if (err.message.includes('timeout')) {
           errorMessage += "The request timed out. Please check your internet connection and try again.";
         } else if (err.message.includes('Missing or insufficient permissions')) {
@@ -71,6 +87,7 @@ export default function Home() {
       
       alert(errorMessage);
     } finally {
+      console.log('🏁 Form submission process completed');
       setIsSubmitting(false);
     }
   };
