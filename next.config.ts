@@ -41,7 +41,7 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: https: blob:",
-              "connect-src 'self' https://firebase.googleapis.com https://www.googleapis.com https://api.openai.com",
+              "connect-src 'self' https://firebase.googleapis.com https://www.googleapis.com https://api.openai.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firebaseinstallations.googleapis.com https://fcmregistrations.googleapis.com https://safebrowsing.googleapis.com https://clientservices.googleapis.com https://www.googleapis.com https://oauth2.googleapis.com https://accounts.google.com https://securetoken.googleapis.com https://firebaseinstallations.googleapis.com https://fcmregistrations.googleapis.com https://safebrowsing.googleapis.com https://clientservices.googleapis.com https://www.googleapis.com https://oauth2.googleapis.com https://accounts.google.com",
               "frame-src 'self'",
               "object-src 'none'",
               "base-uri 'self'",
