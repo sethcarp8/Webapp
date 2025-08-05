@@ -48,7 +48,7 @@ jobs:
         name: security-reports
         path: |
           npm-audit.json
-          lighthouse-results/
+          .lighthouseci/
         retention-days: 30
         
     - name: Comment PR with security findings
@@ -74,7 +74,7 @@ jobs:
           }
           
           // Check for Lighthouse results
-          if (fs.existsSync('lighthouse-results')) {
+          if (fs.existsSync('.lighthouseci')) {
             comment += `✅ **Lighthouse**: Performance and security audit completed\n`;
           }
           
