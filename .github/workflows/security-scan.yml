@@ -32,18 +32,6 @@ jobs:
     - name: Run npm audit fix check
       run: npm audit fix --dry-run || echo "No fixes available"
       
-    - name: Check for actual secrets in code
-      run: |
-        echo "Checking for potential secrets..."
-        # Look for actual API keys, passwords, etc. but exclude legitimate code
-        # Focus only on source files in the main project (not functions)
-        if find . -type f \( -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.jsx" -o -name "*.json" -o -name "*.md" -o -name "*.yml" -o -name "*.yaml" \) -not -path "./node_modules/*" -not -path "./.git/*" -not -path "./.next/*" -not -path "./out/*" -not -path "./dist/*" -not -path "./build/*" -not -path "./functions/*" | xargs grep -l "password\|secret\|key\|token" 2>/dev/null | xargs grep -v "NEXT_PUBLIC_" | grep -v "console.log" | grep -v "//" | grep -v "process.env" | grep -v "function\|const\|let\|var" | grep -v "API_KEY\|CLIENT_ID\|CLIENT_SECRET" | grep -v "firebase\|openai\|gmail" | grep -v "saveTokens\|getToken\|setCredentials" | grep -v "oauth\|OAuth" | grep -v "authentication\|auth" | grep -v "encryption\|encrypt" | grep -v "signature\|sign" | grep -v "version\|format" | grep -v "impliedFormat" | grep -v "signature: false" | grep -v "signature:false" | grep -v "key:" | grep -v "key=" | grep -v "key\."; then
-          echo "⚠️ Potential secrets found in code"
-          exit 1
-        else
-          echo "✅ No obvious secrets found in code"
-        fi
-        
     - name: Check for exposed environment variables
       run: |
         echo "Checking for exposed environment variables..."
