@@ -159,7 +159,35 @@ export const contactAutoDraft = onDocumentCreated(
 
           const gmail = google.gmail({ version: "v1", auth: oAuth2Client });
 
-          // Create or get the Contact Form label
+          // Create or get the KPS label
+          let kpsLabelId: string;
+          try {
+            // Try to find existing KPS label
+            const labelsResponse = await gmail.users.labels.list({ userId: 'me' });
+            const kpsLabel = labelsResponse.data.labels?.find(label => label.name === 'KPS');
+            
+            if (kpsLabel?.id) {
+              kpsLabelId = kpsLabel.id;
+              console.log(`✅ Found existing KPS label: ${kpsLabelId}`);
+            } else {
+              // Create KPS label
+              const createKpsResponse = await gmail.users.labels.create({
+                userId: 'me',
+                requestBody: {
+                  name: 'KPS',
+                  labelListVisibility: 'labelShow',
+                  messageListVisibility: 'show'
+                }
+              });
+              kpsLabelId = createKpsResponse.data.id!;
+              console.log(`✅ Created KPS label: ${kpsLabelId}`);
+            }
+          } catch (labelError) {
+            console.log(`⚠️ Error with KPS label: ${labelError}`);
+            kpsLabelId = 'INBOX'; // Fallback to inbox
+          }
+
+          // Create or get the Contact Form sublabel
           let contactFormLabelId: string;
           try {
             // Try to find existing Contact Form label
@@ -186,7 +214,7 @@ export const contactAutoDraft = onDocumentCreated(
             }
           } catch (sublabelError) {
             console.log(`⚠️ Error with Contact Form label: ${sublabelError}`);
-            contactFormLabelId = 'INBOX'; // Fallback to inbox
+            contactFormLabelId = kpsLabelId; // Fallback to KPS label
           }
 
           // Create email draft
@@ -238,7 +266,7 @@ export const contactAutoDraft = onDocumentCreated(
             aiReply: reply,
             emailDraftCreated: true,
             labelId: contactFormLabelId,
-            labelName: 'Contact Form'
+            labelName: 'KPS/Contact Form'
           });
 
         } catch (gmailError) {
