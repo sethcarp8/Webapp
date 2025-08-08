@@ -30,7 +30,9 @@ test.describe('Style Guide visual snapshots', () => {
     await expect(page.locator('text=Accessibility Checklist')).toBeVisible()
     await expect(page.locator('text=Reduced Motion Demo')).toBeVisible()
     await expect(page.locator('text=Dialog Focus & Escape Behavior')).toBeVisible()
-    expect(await page.screenshot()).toMatchSnapshot('a11y-section.png')
+    const section = page.locator('section').filter({ hasText: 'Contrast & Accessibility' }).first()
+    await expect(section).toBeVisible()
+    expect(await section.screenshot()).toMatchSnapshot('a11y-section.png')
   })
 })
 
