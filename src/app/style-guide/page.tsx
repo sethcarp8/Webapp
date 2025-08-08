@@ -12,6 +12,7 @@ import {
   SkipToContent 
 } from "@/components/layout";
 import { UIComponentsDemo } from "@/components/ui-demo";
+import { ContentComponentsDemo } from "@/components/content-demo";
 
 export default function StyleGuide() {
   return (
@@ -22,6 +23,21 @@ export default function StyleGuide() {
           Design system documentation and component examples
         </p>
       </div>
+
+      {/* Content Components Section */}
+      <section>
+        <Card>
+          <CardHeader>
+            <CardTitle>Content Components</CardTitle>
+            <CardDescription>
+              Page-level content components for guest pages and marketing
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ContentComponentsDemo />
+          </CardContent>
+        </Card>
+      </section>
 
       {/* UI Components Section */}
       <section>
