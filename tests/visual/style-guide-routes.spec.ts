@@ -5,6 +5,7 @@ const routes = [
   '/style-guide/tokens',
   '/style-guide/contrast',
   '/style-guide/layout',
+  '/style-guide/components',
   '/style-guide/content',
   '/style-guide/templates',
   '/style-guide/elements',
