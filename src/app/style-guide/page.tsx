@@ -64,7 +64,7 @@ export default function StyleGuidePage() {
                           >
                             <span 
                               className="text-lg font-medium"
-                              style={{ color: pair.text }}
+                              style={{ color: 'text' in pair ? pair.text : pair.ring }}
                             >
                               Sample Text
                             </span>
@@ -72,7 +72,7 @@ export default function StyleGuidePage() {
                           <p className="text-sm text-muted-foreground">{pair.usage}</p>
                           <div className="mt-2 text-xs font-mono text-muted-foreground">
                             <div>Background: {pair.background}</div>
-                            <div>Text: {pair.text}</div>
+                            <div>Text: {'text' in pair ? pair.text : pair.ring}</div>
                           </div>
                         </div>
                       ))}
@@ -97,7 +97,7 @@ export default function StyleGuidePage() {
                           >
                             <span 
                               className="text-lg font-medium"
-                              style={{ color: pair.text }}
+                              style={{ color: 'text' in pair ? pair.text : pair.ring }}
                             >
                               Sample Text
                             </span>
@@ -105,7 +105,7 @@ export default function StyleGuidePage() {
                           <p className="text-sm text-muted-foreground">{pair.usage}</p>
                           <div className="mt-2 text-xs font-mono text-muted-foreground">
                             <div>Background: {pair.background}</div>
-                            <div>Text: {pair.text}</div>
+                            <div>Text: {'text' in pair ? pair.text : pair.ring}</div>
                           </div>
                         </div>
                       ))}
