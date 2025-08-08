@@ -32,7 +32,8 @@ test.describe('Style Guide visual snapshots', () => {
     await expect(page.locator('text=Dialog Focus & Escape Behavior')).toBeVisible()
     const section = page.locator('section').filter({ hasText: 'Contrast & Accessibility' }).first()
     await expect(section).toBeVisible()
-    expect(await section.screenshot()).toMatchSnapshot('a11y-section.png')
+    // Viewport snapshot after scrolling the section into view for consistent dimensions
+    expect(await page.screenshot()).toMatchSnapshot('a11y-section.png')
   })
 })
 
