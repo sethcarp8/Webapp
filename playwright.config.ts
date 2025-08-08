@@ -6,7 +6,7 @@ export default defineConfig({
   retries: 0,
   reporter: [['list']],
   expect: {
-    toMatchSnapshot: { maxDiffPixels: 200 },
+    toMatchSnapshot: { maxDiffPixelRatio: 0.03 },
   },
   use: {
     baseURL: 'http://localhost:3000',
@@ -19,11 +19,11 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'], deviceScaleFactor: 1 },
     },
     {
       name: 'mobile',
-      use: { ...devices['iPhone 12'] },
+      use: { ...devices['iPhone 12'], deviceScaleFactor: 3 },
     },
   ],
   webServer: {
