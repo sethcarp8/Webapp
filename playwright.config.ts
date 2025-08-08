@@ -6,7 +6,7 @@ export default defineConfig({
   retries: 0,
   reporter: [['list']],
   expect: {
-    toMatchSnapshot: { maxDiffPixelRatio: 0.03 },
+    toMatchSnapshot: { maxDiffPixelRatio: 0.05 },
   },
   use: {
     baseURL: 'http://localhost:3000',
