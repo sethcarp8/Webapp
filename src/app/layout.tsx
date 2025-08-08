@@ -1,7 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import type { ReactNode } from "react";      // ✅ import the type directly
+import type { ReactNode } from "react";
+import { ThemeProvider } from "@/components/providers";
 
 /* ––––– Google Fonts ––––– */
 const geistSans = Geist({
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
 /* ––––– Root Layout ––––– */
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Additional security meta tags */}
         <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -62,7 +63,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta name="apple-mobile-web-app-title" content="Kauai Property Solutions" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

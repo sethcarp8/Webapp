@@ -10,6 +10,7 @@ export default function Home() {
   // ──────────────────────────────────────────────────────────────
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [firebaseError, setFirebaseError] = useState<string | null>(null);
 
   // ──────────────────────────────────────────────────────────────
   // submit handler  →  writes a document to  contacts  collection
@@ -17,6 +18,7 @@ export default function Home() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     setIsSubmitting(true);
+    setFirebaseError(null);
 
     const data = Object.fromEntries(new FormData(e.currentTarget)) as {
       name: string;
@@ -49,6 +51,12 @@ export default function Home() {
       (e.target as HTMLFormElement).reset();
     } catch (err) {
       console.error("Contact form error:", err);
+      
+      // Check if it's a Firebase configuration error
+      if (err instanceof Error && err.message.includes('Firebase')) {
+        setFirebaseError("Firebase is not configured. Please contact us directly at contact@kauaipropertysolutions.com");
+        return;
+      }
       
       // More detailed error messages
       let errorMessage = "Sorry, something went wrong. ";
@@ -145,6 +153,20 @@ export default function Home() {
           <p className="text-lg text-gray-600 text-center mb-12">
             Ready to get started? We&apos;d love to hear from you.
           </p>
+
+          {firebaseError && (
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-8">
+              <div className="text-yellow-800">
+                <p className="font-semibold">⚠️ Development Mode</p>
+                <p className="text-sm mt-1">{firebaseError}</p>
+                <p className="text-sm mt-2">
+                  <a href="mailto:contact@kauaipropertysolutions.com" className="underline">
+                    Email us directly
+                  </a>
+                </p>
+              </div>
+            </div>
+          )}
 
           {submitted ? (
             <div className="bg-green-50 border border-green-200 rounded-lg p-8 text-center">
