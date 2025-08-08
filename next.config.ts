@@ -3,15 +3,6 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  webpack: (config, { isServer }) => {
-    // Exclude functions directory from webpack compilation
-    config.module?.rules?.push({
-      test: /functions/,
-      use: 'ignore-loader',
-    });
-    
-    return config;
-  },
   async headers() {
     return [
       {
