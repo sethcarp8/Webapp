@@ -1,0 +1,42 @@
+name: visual_preview_smoke
+
+on:
+  pull_request:
+    branches: [develop, main]
+
+jobs:
+  preview-smoke:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Wait for Vercel preview
+        uses: patrickedqvist/wait-for-vercel-preview@v1.4.0
+        id: vercel
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          sleep: 10
+          timeout: 900
+
+      - name: Smoke check preview
+        run: |
+          node -e "const https = require('https'); const url = process.env.PREVIEW_URL; if(!url){process.exit(1)}; const paths=['/','/style-guide']; let pending=paths.length, hadErr=false; paths.forEach(p=>https.get(url+p, res=>{ if(res.statusCode!==200){ console.error('Bad status for',p,res.statusCode); hadErr=true } let logs=''; res.on('data',d=>logs+=d); res.on('end',()=>{ if(--pending===0){ process.exit(hadErr?1:0) } }); }).on('error',e=>{ console.error(e); hadErr=true; if(--pending===0){ process.exit(1) } }));" 
+        env:
+          PREVIEW_URL: ${{ steps.vercel.outputs.preview-url }}
+
+
