@@ -1,547 +1,611 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui";
 import { designTokens } from "@/lib/tokens";
 
-/**
- * Style Guide Page
- * 
- * This page serves as a living documentation for all UI components,
- * design tokens, and design system patterns used throughout the application.
- * 
- * Structure:
- * - Typography
- * - Colors
- * - Components
- * - Layout patterns
- * - Spacing
- * - Animations
- * - Design Tokens
- * - Contrast
- */
-export default function StyleGuidePage() {
+export default function StyleGuide() {
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b bg-card">
-        <div className="container mx-auto px-6 py-8">
-          <h1 className="text-4xl font-bold text-card-foreground">
-            Style Guide
-          </h1>
-          <p className="mt-2 text-muted-foreground">
-            Design system documentation and component library
-          </p>
-        </div>
-      </header>
+    <div className="container mx-auto py-8 space-y-8">
+      <div>
+        <h1 className="text-4xl font-bold mb-4">Style Guide</h1>
+        <p className="text-lg text-muted-foreground">
+          Design system documentation and component examples
+        </p>
+      </div>
 
-      {/* Content */}
-      <main className="container mx-auto px-6 py-12">
-        <div className="grid gap-8">
-          {/* Contrast Section */}
-          <section>
-            <Card>
-              <CardHeader>
-                <CardTitle>Contrast & Accessibility</CardTitle>
-                <CardDescription>
-                  Color pairs with contrast ratios and accessibility guidelines
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-8">
-                  {/* Light Theme Pairs */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-4">Light Theme Color Pairs</h3>
-                    <div className="grid gap-4">
-                      {Object.entries(designTokens.lightThemePairs).map(([key, pair]) => (
-                        <div key={key} className="border rounded-lg p-4">
-                          <div className="flex items-center justify-between mb-3">
-                            <h4 className="font-medium text-sm">{key.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</h4>
-                            <span className="text-xs bg-primary-100 text-primary-800 px-2 py-1 rounded">
-                              {pair.contrastRatio}:1
-                            </span>
-                          </div>
-                          <div 
-                            className="h-16 rounded-md mb-3 flex items-center justify-center"
-                            style={{ backgroundColor: pair.background }}
-                          >
-                            <span 
-                              className="text-lg font-medium"
-                              style={{ color: 'text' in pair ? pair.text : pair.ring }}
-                            >
-                              Sample Text
-                            </span>
-                          </div>
-                          <p className="text-sm text-muted-foreground">{pair.usage}</p>
-                          <div className="mt-2 text-xs font-mono text-muted-foreground">
-                            <div>Background: {pair.background}</div>
-                            <div>Text: {'text' in pair ? pair.text : pair.ring}</div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Dark Theme Pairs */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-4">Dark Theme Color Pairs</h3>
-                    <div className="grid gap-4">
-                      {Object.entries(designTokens.darkThemePairs).map(([key, pair]) => (
-                        <div key={key} className="border rounded-lg p-4">
-                          <div className="flex items-center justify-between mb-3">
-                            <h4 className="font-medium text-sm">{key.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</h4>
-                            <span className="text-xs bg-primary-100 text-primary-800 px-2 py-1 rounded">
-                              {pair.contrastRatio}:1
-                            </span>
-                          </div>
-                          <div 
-                            className="h-16 rounded-md mb-3 flex items-center justify-center"
-                            style={{ backgroundColor: pair.background }}
-                          >
-                            <span 
-                              className="text-lg font-medium"
-                              style={{ color: 'text' in pair ? pair.text : pair.ring }}
-                            >
-                              Sample Text
-                            </span>
-                          </div>
-                          <p className="text-sm text-muted-foreground">{pair.usage}</p>
-                          <div className="mt-2 text-xs font-mono text-muted-foreground">
-                            <div>Background: {pair.background}</div>
-                            <div>Text: {'text' in pair ? pair.text : pair.ring}</div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Accessibility Guidelines */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-4">Accessibility Guidelines</h3>
-                    <div className="grid gap-4">
-                      <div className="border rounded-lg p-4">
-                        <h4 className="font-medium mb-2">WCAG 2.1 AA Standards</h4>
-                        <div className="space-y-2 text-sm">
-                          <div className="flex items-center gap-2">
-                            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                            <span><strong>4.5:1</strong> - Normal text (minimum)</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                            <span><strong>3:1</strong> - Large text (18pt+)</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                            <span><strong>3:1</strong> - UI components and graphics</span>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="border rounded-lg p-4">
-                        <h4 className="font-medium mb-2">Usage Guidelines</h4>
-                        <div className="space-y-2 text-sm">
-                          <div>
-                            <strong>Text on Brand:</strong> Use primary color pairs for buttons, links, and brand elements
-                          </div>
-                          <div>
-                            <strong>Text on Surface:</strong> Use surface pairs for body text and content
-                          </div>
-                          <div>
-                            <strong>Disabled States:</strong> Use disabled pairs for non-interactive elements
-                          </div>
-                          <div>
-                            <strong>Focus Rings:</strong> Use focus ring pairs for keyboard navigation indicators
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+      {/* Typography and Elements Section */}
+      <section>
+        <Card>
+          <CardHeader>
+            <CardTitle>Typography & Elements</CardTitle>
+            <CardDescription>
+              Global base styles for typography, links, lists, and layout elements
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-8">
+            
+            {/* Headings */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Headings</h3>
+              <div className="space-y-4">
+                <div>
+                  <h1>Heading 1 (2.5rem, 700 weight)</h1>
+                  <p className="text-sm text-muted-foreground">Used for page titles and main sections</p>
                 </div>
-              </CardContent>
-            </Card>
-          </section>
-
-          {/* Design Tokens Section */}
-          <section>
-            <Card>
-              <CardHeader>
-                <CardTitle>Design Tokens</CardTitle>
-                <CardDescription>
-                  Complete design token system with color, typography, spacing, radius, elevation, motion, and z-index scales
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-8">
-                  {/* Color Tokens */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-4">Color Tokens</h3>
-                    <div className="grid gap-6">
-                      {/* Primary Colors */}
-                      <div>
-                        <h4 className="text-sm font-medium text-muted-foreground mb-3">Primary</h4>
-                        <div className="grid grid-cols-11 gap-2">
-                          {Object.entries(designTokens.color.primary).map(([key, value]) => (
-                            <div key={key} className="text-center">
-                              <div 
-                                className="h-12 rounded-md mb-2" 
-                                style={{ backgroundColor: value }}
-                              />
-                              <p className="text-xs font-mono">{key}</p>
-                              <p className="text-xs text-muted-foreground">{value}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      
-                      {/* Neutral Colors */}
-                      <div>
-                        <h4 className="text-sm font-medium text-muted-foreground mb-3">Neutral</h4>
-                        <div className="grid grid-cols-11 gap-2">
-                          {Object.entries(designTokens.color.neutral).map(([key, value]) => (
-                            <div key={key} className="text-center">
-                              <div 
-                                className="h-12 rounded-md mb-2" 
-                                style={{ backgroundColor: value }}
-                              />
-                              <p className="text-xs font-mono">{key}</p>
-                              <p className="text-xs text-muted-foreground">{value}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      
-                      {/* Semantic Colors */}
-                      <div className="grid grid-cols-3 gap-6">
-                        <div>
-                          <h4 className="text-sm font-medium text-muted-foreground mb-3">Success</h4>
-                          <div className="grid grid-cols-6 gap-2">
-                            {Object.entries(designTokens.color.success).slice(0, 6).map(([key, value]) => (
-                              <div key={key} className="text-center">
-                                <div 
-                                  className="h-8 rounded-md mb-1" 
-                                  style={{ backgroundColor: value }}
-                                />
-                                <p className="text-xs font-mono">{key}</p>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                        <div>
-                          <h4 className="text-sm font-medium text-muted-foreground mb-3">Warning</h4>
-                          <div className="grid grid-cols-6 gap-2">
-                            {Object.entries(designTokens.color.warning).slice(0, 6).map(([key, value]) => (
-                              <div key={key} className="text-center">
-                                <div 
-                                  className="h-8 rounded-md mb-1" 
-                                  style={{ backgroundColor: value }}
-                                />
-                                <p className="text-xs font-mono">{key}</p>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                        <div>
-                          <h4 className="text-sm font-medium text-muted-foreground mb-3">Error</h4>
-                          <div className="grid grid-cols-6 gap-2">
-                            {Object.entries(designTokens.color.error).slice(0, 6).map(([key, value]) => (
-                              <div key={key} className="text-center">
-                                <div 
-                                  className="h-8 rounded-md mb-1" 
-                                  style={{ backgroundColor: value }}
-                                />
-                                <p className="text-xs font-mono">{key}</p>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Typography Tokens */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-4">Typography Tokens</h3>
-                    <div className="grid gap-6">
-                      {/* Font Sizes */}
-                      <div>
-                        <h4 className="text-sm font-medium text-muted-foreground mb-3">Font Sizes</h4>
-                        <div className="space-y-2">
-                          {Object.entries(designTokens.typography.fontSize).map(([key, value]) => (
-                            <div key={key} className="flex items-center justify-between p-2 bg-muted rounded">
-                              <span className="font-mono text-sm">{key}</span>
-                              <span className="text-sm text-muted-foreground">{value}</span>
-                              <span style={{ fontSize: value }} className="font-medium">
-                                The quick brown fox jumps over the lazy dog
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      
-                      {/* Font Weights */}
-                      <div>
-                        <h4 className="text-sm font-medium text-muted-foreground mb-3">Font Weights</h4>
-                        <div className="grid grid-cols-5 gap-4">
-                          {Object.entries(designTokens.typography.fontWeight).map(([key, value]) => (
-                            <div key={key} className="text-center p-3 bg-muted rounded">
-                              <p className="text-sm font-mono mb-1">{key}</p>
-                              <p className="text-sm text-muted-foreground mb-2">{value}</p>
-                              <p style={{ fontWeight: value }} className="text-lg">
-                                Aa
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Spacing Tokens */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-4">Spacing Tokens</h3>
-                    <div className="grid grid-cols-8 gap-4">
-                      {Object.entries(designTokens.spacing).slice(0, 16).map(([key, value]) => (
-                        <div key={key} className="text-center">
-                          <div 
-                            className="bg-primary-500 rounded mb-2" 
-                            style={{ 
-                              width: value, 
-                              height: '1rem',
-                              minWidth: '1rem'
-                            }}
-                          />
-                          <p className="text-xs font-mono">{key}</p>
-                          <p className="text-xs text-muted-foreground">{value}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Radius Tokens */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-4">Radius Tokens</h3>
-                    <div className="grid grid-cols-8 gap-4">
-                      {Object.entries(designTokens.radius).map(([key, value]) => (
-                        <div key={key} className="text-center">
-                          <div 
-                            className="bg-primary-500 mb-2" 
-                            style={{ 
-                              width: '3rem', 
-                              height: '3rem',
-                              borderRadius: value
-                            }}
-                          />
-                          <p className="text-xs font-mono">{key}</p>
-                          <p className="text-xs text-muted-foreground">{value}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Elevation Tokens */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-4">Elevation Tokens</h3>
-                    <div className="grid grid-cols-4 gap-6">
-                      {Object.entries(designTokens.elevation).map(([key, value]) => (
-                        <div key={key} className="text-center">
-                          <div 
-                            className="bg-card border rounded-lg p-4 mb-2" 
-                            style={{ boxShadow: value }}
-                          >
-                            <div className="w-8 h-8 bg-primary-500 rounded mx-auto" />
-                          </div>
-                          <p className="text-xs font-mono">{key}</p>
-                          <p className="text-xs text-muted-foreground break-all">{value}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Motion Tokens */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-4">Motion Tokens</h3>
-                    <div className="grid gap-6">
-                      {/* Duration */}
-                      <div>
-                        <h4 className="text-sm font-medium text-muted-foreground mb-3">Duration</h4>
-                        <div className="grid grid-cols-4 gap-4">
-                          {Object.entries(designTokens.motion.duration).map(([key, value]) => (
-                            <div key={key} className="text-center p-3 bg-muted rounded">
-                              <p className="text-sm font-mono">{key}</p>
-                              <p className="text-sm text-muted-foreground">{value}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      
-                      {/* Easing */}
-                      <div>
-                        <h4 className="text-sm font-medium text-muted-foreground mb-3">Easing</h4>
-                        <div className="grid grid-cols-4 gap-4">
-                          {Object.entries(designTokens.motion.easing).map(([key, value]) => (
-                            <div key={key} className="text-center p-3 bg-muted rounded">
-                              <p className="text-sm font-mono">{key}</p>
-                              <p className="text-sm text-muted-foreground break-all">{value}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Z-Index Tokens */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-4">Z-Index Tokens</h3>
-                    <div className="grid grid-cols-4 gap-4">
-                      {Object.entries(designTokens.zIndex).map(([key, value]) => (
-                        <div key={key} className="text-center p-3 bg-muted rounded">
-                          <p className="text-sm font-mono">{key}</p>
-                          <p className="text-sm text-muted-foreground">{value}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                <div>
+                  <h2>Heading 2 (2rem, 600 weight)</h2>
+                  <p className="text-sm text-muted-foreground">Used for major section headers</p>
                 </div>
-              </CardContent>
-            </Card>
-          </section>
-
-          {/* Typography Section */}
-          <section>
-            <Card>
-              <CardHeader>
-                <CardTitle>Typography</CardTitle>
-                <CardDescription>
-                  Font families, sizes, and text styles used throughout the application
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div>
-                    <h1 className="text-4xl font-bold">Heading 1</h1>
-                    <p className="text-sm text-muted-foreground">text-4xl font-bold</p>
-                  </div>
-                  <div>
-                    <h2 className="text-3xl font-bold">Heading 2</h2>
-                    <p className="text-sm text-muted-foreground">text-3xl font-bold</p>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-semibold">Heading 3</h3>
-                    <p className="text-sm text-muted-foreground">text-2xl font-semibold</p>
-                  </div>
-                  <div>
-                    <p className="text-lg">Body Large</p>
-                    <p className="text-sm text-muted-foreground">text-lg</p>
-                  </div>
-                  <div>
-                    <p className="text-base">Body</p>
-                    <p className="text-sm text-muted-foreground">text-base</p>
-                  </div>
-                  <div>
-                    <p className="text-sm">Body Small</p>
-                    <p className="text-sm text-muted-foreground">text-sm</p>
-                  </div>
+                <div>
+                  <h3>Heading 3 (1.5rem, 600 weight)</h3>
+                  <p className="text-sm text-muted-foreground">Used for subsection headers</p>
                 </div>
-              </CardContent>
-            </Card>
-          </section>
+                <div>
+                  <h4>Heading 4 (1.25rem, 600 weight)</h4>
+                  <p className="text-sm text-muted-foreground">Used for minor section headers</p>
+                </div>
+                <div>
+                  <h5>Heading 5 (1.125rem, 600 weight)</h5>
+                  <p className="text-sm text-muted-foreground">Used for small section headers</p>
+                </div>
+                <div>
+                  <h6>Heading 6 (1rem, 600 weight)</h6>
+                  <p className="text-sm text-muted-foreground">Used for the smallest headers</p>
+                </div>
+              </div>
+            </div>
 
-          {/* Colors Section */}
-          <section>
-            <Card>
-              <CardHeader>
-                <CardTitle>Colors</CardTitle>
-                <CardDescription>
-                  Color palette and semantic color tokens
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
+            {/* Body Text */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Body Text</h3>
+              <div className="space-y-4">
+                <div>
+                  <p>
+                    This is a standard paragraph with 1.7 line height and proper spacing. 
+                    It provides good readability and follows typographic best practices. 
+                    The text color adapts to the current theme and maintains proper contrast ratios.
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    This is muted text used for secondary information and captions.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Links */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Links</h3>
+              <div className="space-y-4">
+                <div>
+                  <p>
+                    This is a paragraph with an <a href="#example">inline link</a> that demonstrates 
+                    the default link styling with underline and hover effects.
+                  </p>
+                  <p>
+                    <a href="#example" className="text-primary hover:text-primary/80">
+                      Primary colored link
+                    </a> - 
+                    <a href="#example" className="text-secondary-foreground hover:text-secondary-foreground/80">
+                      Secondary colored link
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Lists */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Lists</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="font-semibold mb-2">Unordered List</h4>
+                  <ul>
+                    <li>First item with proper spacing and bullet styling</li>
+                    <li>Second item demonstrating list hierarchy</li>
+                    <li>Third item with nested content
+                      <ul>
+                        <li>Nested item with proper indentation</li>
+                        <li>Another nested item</li>
+                      </ul>
+                    </li>
+                    <li>Fourth item completing the list</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2">Ordered List</h4>
+                  <ol>
+                    <li>First step in a process</li>
+                    <li>Second step with proper numbering</li>
+                    <li>Third step with nested content
+                      <ol>
+                        <li>Sub-step with proper indentation</li>
+                        <li>Another sub-step</li>
+                      </ol>
+                    </li>
+                    <li>Fourth step completing the process</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+
+            {/* Container and Layout */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Container & Layout</h3>
+              <div className="space-y-4">
+                <div className="bg-muted p-4 rounded-lg">
+                  <h4 className="font-semibold mb-2">Container Classes</h4>
+                  <p className="text-sm">
+                    The <code>.container</code> class provides responsive max-widths:
+                  </p>
+                  <ul className="text-sm mt-2">
+                    <li><strong>Mobile:</strong> 100% width with 1rem padding</li>
+                    <li><strong>640px+:</strong> max-width 640px</li>
+                    <li><strong>768px+:</strong> max-width 768px</li>
+                    <li><strong>1024px+:</strong> max-width 1024px</li>
+                    <li><strong>1280px+:</strong> max-width 1280px</li>
+                    <li><strong>1536px+:</strong> max-width 1536px</li>
+                  </ul>
+                </div>
+                <div className="bg-muted p-4 rounded-lg">
+                  <h4 className="font-semibold mb-2">Section Spacing</h4>
+                  <p className="text-sm">
+                    Sections have consistent vertical spacing:
+                  </p>
+                  <ul className="text-sm mt-2">
+                    <li><strong>Mobile:</strong> 4rem (64px) top and bottom padding</li>
+                    <li><strong>768px+:</strong> 6rem (96px) top and bottom padding</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Focus States */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Focus States</h3>
+              <div className="space-y-4">
+                <p className="text-sm text-muted-foreground mb-4">
+                  All interactive elements have consistent focus outlines for accessibility:
+                </p>
+                <div className="space-y-2">
+                  <button className="px-4 py-2 bg-primary text-primary-foreground rounded-md">
+                    Focus me (Tab to test)
+                  </button>
+                  <a href="#example" className="inline-block px-4 py-2 bg-secondary text-secondary-foreground rounded-md">
+                    Link with focus
+                  </a>
+                  <input 
+                    type="text" 
+                    placeholder="Input with focus" 
+                    className="px-4 py-2 border border-border rounded-md bg-background"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Utility Classes */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Utility Classes</h3>
+              <div className="space-y-4">
+                <div className="bg-muted p-4 rounded-lg">
+                  <h4 className="font-semibold mb-2">Screen Reader Only</h4>
+                  <p className="text-sm">
+                    Use <code>.sr-only</code> class to hide content visually while keeping it accessible to screen readers.
+                  </p>
+                  <button className="sr-only">This button is hidden visually but accessible to screen readers</button>
+                </div>
+              </div>
+            </div>
+
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* Typography Section */}
+      <section>
+        <Card>
+          <CardHeader>
+            <CardTitle>Typography</CardTitle>
+            <CardDescription>
+              Font sizes, weights, and line heights from the design tokens
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-6">
+              {Object.entries(designTokens.typography.fontSize).map(([key, value]) => (
+                <div key={key} className="border-b pb-4">
+                  <div className="flex items-baseline gap-4">
+                    <span className="text-sm font-mono text-muted-foreground min-w-[100px]">
+                      {key}
+                    </span>
+                    <span 
+                      className="font-sans"
+                      style={{ 
+                        fontSize: typeof value === 'string' ? value : `${value}px`,
+                        lineHeight: designTokens.typography.lineHeight[key as keyof typeof designTokens.typography.lineHeight] || '1.2'
+                      }}
+                    >
+                      The quick brown fox jumps over the lazy dog
+                    </span>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Size: {typeof value === 'string' ? value : `${value}px`} | 
+                    Line Height: {designTokens.typography.lineHeight[key as keyof typeof designTokens.typography.lineHeight] || '1.2'}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* Colors Section */}
+      <section>
+        <Card>
+          <CardHeader>
+            <CardTitle>Colors</CardTitle>
+            <CardDescription>
+              Color palette and theme variables
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="space-y-2">
+                <div className="h-12 bg-primary rounded-md"></div>
+                <p className="text-sm font-medium">Primary</p>
+              </div>
+              <div className="space-y-2">
+                <div className="h-12 bg-secondary rounded-md"></div>
+                <p className="text-sm font-medium">Secondary</p>
+              </div>
+              <div className="space-y-2">
+                <div className="h-12 bg-muted rounded-md"></div>
+                <p className="text-sm font-medium">Muted</p>
+              </div>
+              <div className="space-y-2">
+                <div className="h-12 bg-accent rounded-md"></div>
+                <p className="text-sm font-medium">Accent</p>
+              </div>
+              <div className="space-y-2">
+                <div className="h-12 bg-destructive rounded-md"></div>
+                <p className="text-sm font-medium">Destructive</p>
+              </div>
+              <div className="space-y-2">
+                <div className="h-12 bg-card rounded-md border"></div>
+                <p className="text-sm font-medium">Card</p>
+              </div>
+              <div className="space-y-2">
+                <div className="h-12 bg-popover rounded-md border"></div>
+                <p className="text-sm font-medium">Popover</p>
+              </div>
+              <div className="space-y-2">
+                <div className="h-12 bg-background rounded-md border"></div>
+                <p className="text-sm font-medium">Background</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* Components Section */}
+      <section>
+        <Card>
+          <CardHeader>
+            <CardTitle>Components</CardTitle>
+            <CardDescription>
+              Reusable UI components
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div>
+                <h3 className="text-lg font-semibold mb-2">Card Component</h3>
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Example Card</CardTitle>
+                    <CardDescription>This is a card component example</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p>Card content goes here with proper spacing and typography.</p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* Spacing Section */}
+      <section>
+        <Card>
+          <CardHeader>
+            <CardTitle>Spacing</CardTitle>
+            <CardDescription>
+              Spacing scale and layout utilities
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {Object.entries(designTokens.spacing).slice(0, 10).map(([key, value]) => (
+                <div key={key} className="flex items-center gap-4">
+                  <span className="text-sm font-mono text-muted-foreground min-w-[60px]">
+                    {key}
+                  </span>
+                  <div 
+                    className="bg-primary h-4 rounded"
+                    style={{ width: typeof value === 'string' ? value : `${value}px` }}
+                  ></div>
+                  <span className="text-sm text-muted-foreground">
+                    {typeof value === 'string' ? value : `${value}px`}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* Design Tokens Section */}
+      <section>
+        <Card>
+          <CardHeader>
+            <CardTitle>Design Tokens</CardTitle>
+            <CardDescription>
+              Centralized design system tokens and their values
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-8">
+              
+              {/* Color Tokens */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Color Scale</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <div className="space-y-2">
-                    <div className="h-12 bg-primary rounded-md"></div>
-                    <p className="text-sm font-medium">Primary</p>
-                    <p className="text-xs text-muted-foreground">bg-primary</p>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="h-12 bg-secondary rounded-md"></div>
-                    <p className="text-sm font-medium">Secondary</p>
-                    <p className="text-xs text-muted-foreground">bg-secondary</p>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="h-12 bg-muted rounded-md"></div>
-                    <p className="text-sm font-medium">Muted</p>
-                    <p className="text-xs text-muted-foreground">bg-muted</p>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="h-12 bg-destructive rounded-md"></div>
-                    <p className="text-sm font-medium">Destructive</p>
-                    <p className="text-xs text-muted-foreground">bg-destructive</p>
-                  </div>
+                  {Object.entries(designTokens.color.primary).map(([key, value]) => (
+                    <div key={key} className="space-y-2">
+                      <div 
+                        className="h-16 rounded-md"
+                        style={{ backgroundColor: value as string }}
+                      ></div>
+                      <p className="text-sm font-medium">{key}</p>
+                      <p className="text-xs text-muted-foreground font-mono">{value as string}</p>
+                    </div>
+                  ))}
                 </div>
-              </CardContent>
-            </Card>
-          </section>
+              </div>
 
-          {/* Components Section */}
-          <section>
-            <Card>
-              <CardHeader>
-                <CardTitle>Components</CardTitle>
-                <CardDescription>
-                  Reusable UI components and their variants
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-6">
+              {/* Typography Tokens */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Typography Scale</h3>
+                <div className="space-y-4">
+                  {Object.entries(designTokens.typography.fontSize).map(([key, value]) => (
+                    <div key={key} className="border-b pb-2">
+                      <div className="flex items-baseline gap-4">
+                        <span className="text-sm font-mono text-muted-foreground min-w-[100px]">
+                          {key}
+                        </span>
+                        <span 
+                          className="font-sans"
+                          style={{ 
+                            fontSize: typeof value === 'string' ? value : `${value}px`,
+                            lineHeight: designTokens.typography.lineHeight[key as keyof typeof designTokens.typography.lineHeight] || '1.2'
+                          }}
+                        >
+                          Sample text
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Spacing Tokens */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Spacing Scale</h3>
+                <div className="space-y-2">
+                  {Object.entries(designTokens.spacing).slice(0, 8).map(([key, value]) => (
+                    <div key={key} className="flex items-center gap-4">
+                      <span className="text-sm font-mono text-muted-foreground min-w-[60px]">
+                        {key}
+                      </span>
+                      <div 
+                        className="bg-primary h-4 rounded"
+                        style={{ width: typeof value === 'string' ? value : `${value}px` }}
+                      ></div>
+                      <span className="text-sm text-muted-foreground">
+                        {typeof value === 'string' ? value : `${value}px`}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Radius Tokens */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Border Radius Scale</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {Object.entries(designTokens.radius).map(([key, value]) => (
+                    <div key={key} className="space-y-2">
+                      <div 
+                        className="h-16 bg-primary rounded"
+                        style={{ borderRadius: typeof value === 'string' ? value : `${value}px` }}
+                      ></div>
+                      <p className="text-sm font-medium">{key}</p>
+                      <p className="text-xs text-muted-foreground font-mono">{value as string}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Elevation Tokens */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Elevation Scale</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {Object.entries(designTokens.elevation).map(([key, value]) => (
+                    <div key={key} className="space-y-2">
+                      <div 
+                        className="h-16 bg-background rounded-md border"
+                        style={{ boxShadow: value as string }}
+                      ></div>
+                      <p className="text-sm font-medium">{key}</p>
+                      <p className="text-xs text-muted-foreground font-mono">{value as string}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Motion Tokens */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Motion Scale</h3>
+                <div className="space-y-4">
                   <div>
-                    <h4 className="text-lg font-semibold mb-4">Cards</h4>
-                    <div className="grid gap-4">
-                      <Card>
-                        <CardHeader>
-                          <CardTitle>Card Title</CardTitle>
-                          <CardDescription>Card description text</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                          <p>Card content goes here</p>
-                        </CardContent>
-                      </Card>
+                    <h4 className="font-semibold mb-2">Duration</h4>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      {Object.entries(designTokens.motion.duration).map(([key, value]) => (
+                        <div key={key} className="space-y-1">
+                          <p className="text-sm font-medium">{key}</p>
+                          <p className="text-xs text-muted-foreground font-mono">{value as string}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Easing</h4>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      {Object.entries(designTokens.motion.easing).map(([key, value]) => (
+                        <div key={key} className="space-y-1">
+                          <p className="text-sm font-medium">{key}</p>
+                          <p className="text-xs text-muted-foreground font-mono">{value as string}</p>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          </section>
+              </div>
 
-          {/* Spacing Section */}
-          <section>
-            <Card>
-              <CardHeader>
-                <CardTitle>Spacing</CardTitle>
-                <CardDescription>
-                  Consistent spacing scale and layout patterns
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
+              {/* Z-Index Tokens */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Z-Index Scale</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {Object.entries(designTokens.zIndex).map(([key, value]) => (
+                    <div key={key} className="space-y-1">
+                      <p className="text-sm font-medium">{key}</p>
+                      <p className="text-xs text-muted-foreground font-mono">{value as string}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* Contrast & Accessibility Section */}
+      <section>
+        <Card>
+          <CardHeader>
+            <CardTitle>Contrast & Accessibility</CardTitle>
+            <CardDescription>
+              Color pairs with contrast ratios and accessibility guidelines
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-8">
+              
+              {/* Light Theme Pairs */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Light Theme Color Pairs</h3>
+                <div className="grid gap-4">
+                  {Object.entries(designTokens.lightThemePairs).map(([key, pair]) => (
+                    <div key={key} className="border rounded-lg p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-medium">{key}</span>
+                        <span className="text-sm text-muted-foreground">
+                          {pair.contrastRatio}:1 ratio
+                        </span>
+                      </div>
+                      <div
+                        className="h-16 rounded-md mb-3 flex items-center justify-center"
+                        style={{ backgroundColor: pair.background }}
+                      >
+                        <span
+                          className="text-lg font-medium"
+                          style={{ color: 'text' in pair ? pair.text : pair.ring }}
+                        >
+                          Sample Text
+                        </span>
+                      </div>
+                      <p className="text-sm text-muted-foreground">{pair.usage}</p>
+                      <div className="mt-2 text-xs font-mono text-muted-foreground">
+                        <div>Background: {pair.background}</div>
+                        <div>Text: {'text' in pair ? pair.text : pair.ring}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Dark Theme Pairs */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Dark Theme Color Pairs</h3>
+                <div className="grid gap-4">
+                  {Object.entries(designTokens.darkThemePairs).map(([key, pair]) => (
+                    <div key={key} className="border rounded-lg p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-medium">{key}</span>
+                        <span className="text-sm text-muted-foreground">
+                          {pair.contrastRatio}:1 ratio
+                        </span>
+                      </div>
+                      <div
+                        className="h-16 rounded-md mb-3 flex items-center justify-center"
+                        style={{ backgroundColor: pair.background }}
+                      >
+                        <span
+                          className="text-lg font-medium"
+                          style={{ color: 'text' in pair ? pair.text : pair.ring }}
+                        >
+                          Sample Text
+                        </span>
+                      </div>
+                      <p className="text-sm text-muted-foreground">{pair.usage}</p>
+                      <div className="mt-2 text-xs font-mono text-muted-foreground">
+                        <div>Background: {pair.background}</div>
+                        <div>Text: {'text' in pair ? pair.text : pair.ring}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Accessibility Guidelines */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Accessibility Guidelines</h3>
                 <div className="space-y-4">
-                  <div className="space-y-2">
-                    <div className="h-2 bg-primary/20 rounded"></div>
-                    <p className="text-sm">4px (space-1)</p>
+                  <div className="bg-muted p-4 rounded-lg">
+                    <h4 className="font-semibold mb-2">WCAG 2.1 AA Standards</h4>
+                    <ul className="text-sm space-y-1">
+                      <li>• Normal text: Minimum 4.5:1 contrast ratio</li>
+                      <li>• Large text: Minimum 3:1 contrast ratio</li>
+                      <li>• UI components: Minimum 3:1 contrast ratio</li>
+                      <li>• Focus indicators: Minimum 3:1 contrast ratio</li>
+                    </ul>
                   </div>
-                  <div className="space-y-2">
-                    <div className="h-4 bg-primary/20 rounded"></div>
-                    <p className="text-sm">16px (space-4)</p>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="h-6 bg-primary/20 rounded"></div>
-                    <p className="text-sm">24px (space-6)</p>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="h-8 bg-primary/20 rounded"></div>
-                    <p className="text-sm">32px (space-8)</p>
+                  <div className="bg-muted p-4 rounded-lg">
+                    <h4 className="font-semibold mb-2">Best Practices</h4>
+                    <ul className="text-sm space-y-1">
+                      <li>• Use semantic HTML elements</li>
+                      <li>• Provide sufficient color contrast</li>
+                      <li>• Include focus indicators for all interactive elements</li>
+                      <li>• Test with screen readers and keyboard navigation</li>
+                    </ul>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          </section>
-        </div>
-      </main>
+              </div>
+
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
     </div>
   );
 }
