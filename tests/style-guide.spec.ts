@@ -30,6 +30,8 @@ test.describe('Style Guide visual snapshots', () => {
     await expect(page.locator('text=Accessibility Checklist')).toBeVisible()
     await expect(page.locator('text=Reduced Motion Demo')).toBeVisible()
     await expect(page.locator('text=Dialog Focus & Escape Behavior')).toBeVisible()
+    await page.addStyleTag({ content: '*{animation: none !important; transition: none !important}' })
+    await page.evaluate(async () => { await (document as any).fonts?.ready })
     const section = page.locator('section').filter({ hasText: 'Contrast & Accessibility' }).first()
     await expect(section).toBeVisible()
     // Viewport snapshot after scrolling the section into view for consistent dimensions
