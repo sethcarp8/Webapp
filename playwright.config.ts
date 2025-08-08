@@ -5,6 +5,11 @@ export default defineConfig({
   fullyParallel: true,
   retries: 0,
   reporter: [['list']],
+  expect: {
+    toMatchSnapshot: { maxDiffPixels: 200 },
+    // Make snapshot filenames OS-independent (no -darwin / -linux suffix)
+    snapshotPathTemplate: '{testDir}/{testFileName}-snapshots/{arg}{ext}',
+  },
   use: {
     baseURL: 'http://localhost:3000',
     trace: 'on-first-retry',
