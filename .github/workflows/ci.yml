@@ -24,7 +24,10 @@ jobs:
       run: npm ci
       
     - name: Build Next.js app
-      run: npm run build
+      run: |
+        npm run build
+        echo "Next.js build completed successfully"
+      continue-on-error: false
       
     - name: Run type check
       run: npm run lint

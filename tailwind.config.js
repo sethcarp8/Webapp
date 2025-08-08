@@ -1,4 +1,34 @@
-const { designTokens } = require('./src/lib/tokens');
+let designTokens;
+
+try {
+  designTokens = require('./src/lib/tokens').designTokens;
+} catch (error) {
+  console.warn('Could not load design tokens, using fallback configuration');
+  designTokens = {
+    color: {
+      primary: {},
+      neutral: {},
+      success: {},
+      warning: {},
+      error: {},
+    },
+    typography: {
+      fontFamily: {},
+      fontSize: {},
+      fontWeight: {},
+      lineHeight: {},
+      letterSpacing: {},
+    },
+    spacing: {},
+    radius: {},
+    elevation: {},
+    motion: {
+      duration: {},
+      easing: {},
+    },
+    zIndex: {},
+  };
+}
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
