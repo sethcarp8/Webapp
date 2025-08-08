@@ -15,6 +15,7 @@ import { designTokens } from "@/lib/tokens";
  * - Spacing
  * - Animations
  * - Design Tokens
+ * - Contrast
  */
 export default function StyleGuidePage() {
   return (
@@ -34,6 +35,129 @@ export default function StyleGuidePage() {
       {/* Content */}
       <main className="container mx-auto px-6 py-12">
         <div className="grid gap-8">
+          {/* Contrast Section */}
+          <section>
+            <Card>
+              <CardHeader>
+                <CardTitle>Contrast & Accessibility</CardTitle>
+                <CardDescription>
+                  Color pairs with contrast ratios and accessibility guidelines
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-8">
+                  {/* Light Theme Pairs */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4">Light Theme Color Pairs</h3>
+                    <div className="grid gap-4">
+                      {Object.entries(designTokens.lightThemePairs).map(([key, pair]) => (
+                        <div key={key} className="border rounded-lg p-4">
+                          <div className="flex items-center justify-between mb-3">
+                            <h4 className="font-medium text-sm">{key.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</h4>
+                            <span className="text-xs bg-primary-100 text-primary-800 px-2 py-1 rounded">
+                              {pair.contrastRatio}:1
+                            </span>
+                          </div>
+                          <div 
+                            className="h-16 rounded-md mb-3 flex items-center justify-center"
+                            style={{ backgroundColor: pair.background }}
+                          >
+                            <span 
+                              className="text-lg font-medium"
+                              style={{ color: pair.text }}
+                            >
+                              Sample Text
+                            </span>
+                          </div>
+                          <p className="text-sm text-muted-foreground">{pair.usage}</p>
+                          <div className="mt-2 text-xs font-mono text-muted-foreground">
+                            <div>Background: {pair.background}</div>
+                            <div>Text: {pair.text}</div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Dark Theme Pairs */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4">Dark Theme Color Pairs</h3>
+                    <div className="grid gap-4">
+                      {Object.entries(designTokens.darkThemePairs).map(([key, pair]) => (
+                        <div key={key} className="border rounded-lg p-4">
+                          <div className="flex items-center justify-between mb-3">
+                            <h4 className="font-medium text-sm">{key.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</h4>
+                            <span className="text-xs bg-primary-100 text-primary-800 px-2 py-1 rounded">
+                              {pair.contrastRatio}:1
+                            </span>
+                          </div>
+                          <div 
+                            className="h-16 rounded-md mb-3 flex items-center justify-center"
+                            style={{ backgroundColor: pair.background }}
+                          >
+                            <span 
+                              className="text-lg font-medium"
+                              style={{ color: pair.text }}
+                            >
+                              Sample Text
+                            </span>
+                          </div>
+                          <p className="text-sm text-muted-foreground">{pair.usage}</p>
+                          <div className="mt-2 text-xs font-mono text-muted-foreground">
+                            <div>Background: {pair.background}</div>
+                            <div>Text: {pair.text}</div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Accessibility Guidelines */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4">Accessibility Guidelines</h3>
+                    <div className="grid gap-4">
+                      <div className="border rounded-lg p-4">
+                        <h4 className="font-medium mb-2">WCAG 2.1 AA Standards</h4>
+                        <div className="space-y-2 text-sm">
+                          <div className="flex items-center gap-2">
+                            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                            <span><strong>4.5:1</strong> - Normal text (minimum)</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                            <span><strong>3:1</strong> - Large text (18pt+)</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                            <span><strong>3:1</strong> - UI components and graphics</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="border rounded-lg p-4">
+                        <h4 className="font-medium mb-2">Usage Guidelines</h4>
+                        <div className="space-y-2 text-sm">
+                          <div>
+                            <strong>Text on Brand:</strong> Use primary color pairs for buttons, links, and brand elements
+                          </div>
+                          <div>
+                            <strong>Text on Surface:</strong> Use surface pairs for body text and content
+                          </div>
+                          <div>
+                            <strong>Disabled States:</strong> Use disabled pairs for non-interactive elements
+                          </div>
+                          <div>
+                            <strong>Focus Rings:</strong> Use focus ring pairs for keyboard navigation indicators
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+
           {/* Design Tokens Section */}
           <section>
             <Card>

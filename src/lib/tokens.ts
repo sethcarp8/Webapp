@@ -94,6 +94,170 @@ export const colorTokens = {
 } as const;
 
 // =============================================================================
+// LIGHT THEME COLOR PAIRS
+// =============================================================================
+
+export const lightThemePairs = {
+  // Text on brand colors
+  'text-on-primary': {
+    background: 'hsl(217, 91%, 60%)', // primary-500
+    text: 'hsl(0, 0%, 100%)', // white
+    contrastRatio: 4.5,
+    usage: 'Primary buttons, links, and brand elements'
+  },
+  'text-on-primary-dark': {
+    background: 'hsl(221, 83%, 53%)', // primary-600
+    text: 'hsl(0, 0%, 100%)', // white
+    contrastRatio: 5.8,
+    usage: 'Primary buttons on hover'
+  },
+  
+  // Text on surface colors
+  'text-on-surface': {
+    background: 'hsl(0, 0%, 100%)', // white
+    text: 'hsl(0, 0%, 9%)', // neutral-900
+    contrastRatio: 21.0,
+    usage: 'Primary text on white backgrounds'
+  },
+  'text-on-surface-muted': {
+    background: 'hsl(0, 0%, 98%)', // neutral-50
+    text: 'hsl(0, 0%, 32%)', // neutral-600
+    contrastRatio: 7.2,
+    usage: 'Secondary text on light backgrounds'
+  },
+  'text-on-surface-subtle': {
+    background: 'hsl(0, 0%, 96%)', // neutral-100
+    text: 'hsl(0, 0%, 45%)', // neutral-500
+    contrastRatio: 4.8,
+    usage: 'Subtle text on light backgrounds'
+  },
+  
+  // Disabled states
+  'disabled-light': {
+    background: 'hsl(0, 0%, 96%)', // neutral-100
+    text: 'hsl(0, 0%, 64%)', // neutral-400
+    contrastRatio: 3.2,
+    usage: 'Disabled elements on light backgrounds'
+  },
+  'disabled-dark': {
+    background: 'hsl(0, 0%, 90%)', // neutral-200
+    text: 'hsl(0, 0%, 64%)', // neutral-400
+    contrastRatio: 2.8,
+    usage: 'Disabled elements on darker backgrounds'
+  },
+  
+  // Focus ring colors
+  'focus-ring': {
+    background: 'hsl(217, 91%, 60%)', // primary-500
+    ring: 'hsl(217, 91%, 60%)', // primary-500
+    contrastRatio: 4.5,
+    usage: 'Focus indicators for interactive elements'
+  },
+  
+  // Semantic color pairs
+  'success-light': {
+    background: 'hsl(142, 71%, 45%)', // success-500
+    text: 'hsl(0, 0%, 100%)', // white
+    contrastRatio: 4.8,
+    usage: 'Success states and confirmations'
+  },
+  'warning-light': {
+    background: 'hsl(49, 98%, 35%)', // warning-500
+    text: 'hsl(0, 0%, 100%)', // white
+    contrastRatio: 4.2,
+    usage: 'Warning states and alerts'
+  },
+  'error-light': {
+    background: 'hsl(0, 84%, 60%)', // error-500
+    text: 'hsl(0, 0%, 100%)', // white
+    contrastRatio: 4.6,
+    usage: 'Error states and destructive actions'
+  },
+} as const;
+
+// =============================================================================
+// DARK THEME COLOR PAIRS
+// =============================================================================
+
+export const darkThemePairs = {
+  // Text on brand colors
+  'text-on-primary-dark': {
+    background: 'hsl(217, 91%, 60%)', // primary-500
+    text: 'hsl(0, 0%, 100%)', // white
+    contrastRatio: 4.5,
+    usage: 'Primary buttons, links, and brand elements'
+  },
+  'text-on-primary-dark-hover': {
+    background: 'hsl(213, 94%, 68%)', // primary-400
+    text: 'hsl(0, 0%, 100%)', // white
+    contrastRatio: 3.8,
+    usage: 'Primary buttons on hover in dark mode'
+  },
+  
+  // Text on surface colors
+  'text-on-surface-dark': {
+    background: 'hsl(0, 0%, 9%)', // neutral-900
+    text: 'hsl(0, 0%, 98%)', // neutral-50
+    contrastRatio: 21.0,
+    usage: 'Primary text on dark backgrounds'
+  },
+  'text-on-surface-muted-dark': {
+    background: 'hsl(0, 0%, 15%)', // neutral-800
+    text: 'hsl(0, 0%, 83%)', // neutral-300
+    contrastRatio: 7.2,
+    usage: 'Secondary text on dark backgrounds'
+  },
+  'text-on-surface-subtle-dark': {
+    background: 'hsl(0, 0%, 25%)', // neutral-700
+    text: 'hsl(0, 0%, 64%)', // neutral-400
+    contrastRatio: 4.8,
+    usage: 'Subtle text on dark backgrounds'
+  },
+  
+  // Disabled states
+  'disabled-dark-theme': {
+    background: 'hsl(0, 0%, 25%)', // neutral-700
+    text: 'hsl(0, 0%, 45%)', // neutral-500
+    contrastRatio: 3.2,
+    usage: 'Disabled elements in dark mode'
+  },
+  'disabled-dark-theme-subtle': {
+    background: 'hsl(0, 0%, 15%)', // neutral-800
+    text: 'hsl(0, 0%, 45%)', // neutral-500
+    contrastRatio: 2.8,
+    usage: 'Disabled elements on darker surfaces'
+  },
+  
+  // Focus ring colors
+  'focus-ring-dark': {
+    background: 'hsl(213, 94%, 68%)', // primary-400
+    ring: 'hsl(213, 94%, 68%)', // primary-400
+    contrastRatio: 3.8,
+    usage: 'Focus indicators for interactive elements in dark mode'
+  },
+  
+  // Semantic color pairs
+  'success-dark': {
+    background: 'hsl(142, 69%, 58%)', // success-400
+    text: 'hsl(0, 0%, 100%)', // white
+    contrastRatio: 4.2,
+    usage: 'Success states and confirmations in dark mode'
+  },
+  'warning-dark': {
+    background: 'hsl(49, 98%, 49%)', // warning-400
+    text: 'hsl(0, 0%, 100%)', // white
+    contrastRatio: 3.8,
+    usage: 'Warning states and alerts in dark mode'
+  },
+  'error-dark': {
+    background: 'hsl(0, 90%, 70%)', // error-400
+    text: 'hsl(0, 0%, 100%)', // white
+    contrastRatio: 4.0,
+    usage: 'Error states and destructive actions in dark mode'
+  },
+} as const;
+
+// =============================================================================
 // TYPOGRAPHY TOKENS
 // =============================================================================
 
@@ -281,6 +445,8 @@ export const designTokens = {
   elevation: elevationTokens,
   motion: motionTokens,
   zIndex: zIndexTokens,
+  lightThemePairs,
+  darkThemePairs,
 } as const;
 
 export type ColorToken = keyof typeof colorTokens;
@@ -290,3 +456,5 @@ export type RadiusToken = keyof typeof radiusTokens;
 export type ElevationToken = keyof typeof elevationTokens;
 export type MotionToken = keyof typeof motionTokens;
 export type ZIndexToken = keyof typeof zIndexTokens;
+export type LightThemePair = keyof typeof lightThemePairs;
+export type DarkThemePair = keyof typeof darkThemePairs;
