@@ -11,6 +11,7 @@ import {
   VisuallyHidden,
   SkipToContent 
 } from "@/components/layout";
+import { UIComponentsDemo } from "@/components/ui-demo";
 
 export default function StyleGuide() {
   return (
@@ -21,6 +22,21 @@ export default function StyleGuide() {
           Design system documentation and component examples
         </p>
       </div>
+
+      {/* UI Components Section */}
+      <section>
+        <Card>
+          <CardHeader>
+            <CardTitle>UI Components</CardTitle>
+            <CardDescription>
+              Core interactive components built with accessibility and design tokens
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <UIComponentsDemo />
+          </CardContent>
+        </Card>
+      </section>
 
       {/* Layout Section */}
       <section>
