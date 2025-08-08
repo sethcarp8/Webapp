@@ -34,6 +34,21 @@ export const colorTokens = {
     950: 'hsl(229, 84%, 5%)',
   },
   
+  // Accent colors (secondary accent)
+  accent: {
+    50: 'hsl(275, 100%, 98%)',
+    100: 'hsl(274, 100%, 95%)',
+    200: 'hsl(272, 95%, 90%)',
+    300: 'hsl(270, 93%, 83%)',
+    400: 'hsl(268, 89%, 74%)',
+    500: 'hsl(266, 85%, 65%)',
+    600: 'hsl(264, 77%, 55%)',
+    700: 'hsl(262, 72%, 47%)',
+    800: 'hsl(260, 67%, 40%)',
+    900: 'hsl(258, 62%, 34%)',
+    950: 'hsl(255, 60%, 18%)',
+  },
+  
   // Neutral grays
   neutral: {
     50: 'hsl(0, 0%, 98%)',
@@ -90,6 +105,21 @@ export const colorTokens = {
     800: 'hsl(0, 70%, 35%)',
     900: 'hsl(0, 63%, 31%)',
     950: 'hsl(0, 75%, 15%)',
+  },
+  
+  // Informational (cyan/teal)
+  info: {
+    50: 'hsl(186, 100%, 97%)',
+    100: 'hsl(186, 94%, 90%)',
+    200: 'hsl(187, 92%, 82%)',
+    300: 'hsl(187, 85%, 74%)',
+    400: 'hsl(188, 78%, 64%)',
+    500: 'hsl(189, 85%, 53%)',
+    600: 'hsl(191, 90%, 42%)',
+    700: 'hsl(192, 82%, 35%)',
+    800: 'hsl(194, 74%, 27%)',
+    900: 'hsl(196, 63%, 22%)',
+    950: 'hsl(198, 61%, 15%)',
   },
 } as const;
 
@@ -173,6 +203,34 @@ export const lightThemePairs = {
     contrastRatio: 4.6,
     usage: 'Error states and destructive actions'
   },
+  
+  // Accent & Info
+  'accent-light': {
+    background: 'hsl(266, 85%, 65%)', // accent-500
+    text: 'hsl(0,0%,100%)',
+    contrastRatio: 4.5,
+    usage: 'Accent elements and secondary actions'
+  },
+  'info-light': {
+    background: 'hsl(189, 85%, 53%)', // info-500
+    text: 'hsl(0,0%,100%)',
+    contrastRatio: 4.5,
+    usage: 'Informational banners and messages'
+  },
+  
+  // Surface & Rings
+  'surface-default': {
+    background: 'hsl(0, 0%, 100%)',
+    text: 'hsl(0,0%,9%)',
+    contrastRatio: 21.0,
+    usage: 'Cards and elevated surfaces'
+  },
+  'surface-muted': {
+    background: 'hsl(0, 0%, 96%)',
+    text: 'hsl(0,0%,25%)',
+    contrastRatio: 12.0,
+    usage: 'Muted blocks and sections'
+  },
 } as const;
 
 // =============================================================================
@@ -254,6 +312,34 @@ export const darkThemePairs = {
     text: 'hsl(0, 0%, 100%)', // white
     contrastRatio: 4.0,
     usage: 'Error states and destructive actions in dark mode'
+  },
+  
+  // Accent & Info in dark
+  'accent-dark': {
+    background: 'hsl(268, 89%, 74%)', // accent-400
+    text: 'hsl(0,0%,10%)',
+    contrastRatio: 4.5,
+    usage: 'Accent elements in dark mode'
+  },
+  'info-dark': {
+    background: 'hsl(188, 78%, 64%)', // info-400
+    text: 'hsl(0,0%,10%)',
+    contrastRatio: 4.5,
+    usage: 'Informational banners in dark mode'
+  },
+  
+  // Surface & Rings
+  'surface-default-dark': {
+    background: 'hsl(0, 0%, 9%)',
+    text: 'hsl(0,0%,98%)',
+    contrastRatio: 21.0,
+    usage: 'Cards and elevated surfaces on dark'
+  },
+  'surface-muted-dark': {
+    background: 'hsl(0, 0%, 15%)',
+    text: 'hsl(0,0%,90%)',
+    contrastRatio: 12.0,
+    usage: 'Muted blocks and sections on dark'
   },
 } as const;
 
@@ -447,6 +533,12 @@ export const designTokens = {
   zIndex: zIndexTokens,
   lightThemePairs,
   darkThemePairs,
+  meta: {
+    ringColorLight: 'hsl(217, 91%, 60%)',
+    ringColorDark: 'hsl(213, 94%, 68%)',
+    overlayLight: 'rgba(0,0,0,0.5)',
+    overlayDark: 'rgba(0,0,0,0.6)',
+  }
 } as const;
 
 export type ColorToken = keyof typeof colorTokens;
