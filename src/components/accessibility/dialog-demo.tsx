@@ -5,7 +5,10 @@ import { createPortal } from "react-dom"
 import { Button } from "@/components/ui"
 import { cn } from "@/lib/utils"
 
-function useFocusTrap(enabled: boolean, containerRef: React.RefObject<HTMLElement>) {
+function useFocusTrap<T extends HTMLElement>(
+  enabled: boolean,
+  containerRef: React.RefObject<T | null> | React.MutableRefObject<T | null>
+) {
   React.useEffect(() => {
     if (!enabled) return
     const container = containerRef.current
@@ -49,7 +52,7 @@ export default function DialogAccessibilityDemo() {
   const [open, setOpen] = React.useState(false)
   const dialogRef = React.useRef<HTMLDivElement>(null)
   const closeButtonRef = React.useRef<HTMLButtonElement>(null)
-  const triggerRef = React.useRef<HTMLButtonElement>(null)
+  const triggerRef = React.useRef<HTMLButtonElement | null>(null)
   const [mounted, setMounted] = React.useState(false)
 
   useFocusTrap(open, dialogRef)
@@ -59,7 +62,7 @@ export default function DialogAccessibilityDemo() {
   React.useEffect(() => {
     if (open) {
       const prev = document.activeElement as HTMLElement | null
-      triggerRef.current = (prev as HTMLButtonElement | null) || undefined
+      triggerRef.current = (prev as HTMLButtonElement | null)
       document.body.style.overflow = 'hidden'
       // Focus first interactive element (close button)
       setTimeout(() => closeButtonRef.current?.focus(), 0)
