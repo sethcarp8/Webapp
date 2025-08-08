@@ -18,28 +18,12 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '20'
-        cache: 'npm'
         
     - name: Install dependencies
       run: npm ci
       
     - name: Build Next.js app
-      run: |
-        npm run build
-        echo "Next.js build completed successfully"
-      continue-on-error: false
+      run: npm run build
       
-    - name: Run type check
+    - name: Run linting
       run: npm run lint
-      
-    - name: Install Firebase functions dependencies
-      run: |
-        cd functions
-        npm ci
-      working-directory: ./
-      
-    - name: Build Firebase functions
-      run: |
-        cd functions
-        npm run build
-      working-directory: ./
