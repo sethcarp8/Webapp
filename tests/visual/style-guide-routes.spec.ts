@@ -39,7 +39,8 @@ for (const theme of ['light', 'dark'] as const) {
         expect(filtered, `console errors on ${route}`)
           .toEqual([])
         const routeKey = route.replace(/\//g, '-').replace(/^-/, '') || 'home'
-        expect(await page.screenshot({ fullPage: true, maxSize: 32000 })).toMatchSnapshot(`${routeKey}__${test.info().project.name.includes('mobile') ? 'mobile' : 'desktop'}__${theme}.png`)
+        // Use viewport-only screenshots to avoid 32k height limit in CI
+        expect(await page.screenshot()).toMatchSnapshot(`${routeKey}__${test.info().project.name.includes('mobile') ? 'mobile' : 'desktop'}__${theme}.png`)
       })
     }
   })

@@ -13,15 +13,15 @@ test.describe('Style Guide visual snapshots', () => {
   test('renders the Style Guide main page', async ({ page }) => {
     await page.goto('/style-guide')
     await expect(page.locator('h1:text("Style Guide")')).toBeVisible()
-    // Avoid enormous full-page mobile screenshots in CI limits
-    expect(await page.screenshot({ fullPage: true, maxSize: 32000 })).toMatchSnapshot('style-guide.png')
+    // Viewport snapshot for stability across OS/CI
+    expect(await page.screenshot()).toMatchSnapshot('style-guide.png')
   })
 
   test('Page Templates screenshots are visible', async ({ page }) => {
     await page.goto('/style-guide')
     const grid = page.locator('img[alt$="screenshot"]')
     await expect(grid.first()).toBeVisible()
-    expect(await page.screenshot({ fullPage: true, maxSize: 32000 })).toMatchSnapshot('page-templates.png')
+    expect(await page.screenshot()).toMatchSnapshot('page-templates.png')
   })
 
   test('Contrast & Accessibility section (with demos)', async ({ page }) => {
