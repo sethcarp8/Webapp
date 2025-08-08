@@ -12,7 +12,7 @@ const routes = [
   '/style-guide/accessibility',
 ]
 
-async function preparePage(page, theme: 'light' | 'dark') {
+async function preparePage(page: any, theme: 'light' | 'dark') {
   // Set theme before navigating
   await page.addInitScript((t: string) => {
     try { localStorage.setItem('theme', t) } catch {}
@@ -20,8 +20,8 @@ async function preparePage(page, theme: 'light' | 'dark') {
 
   // Capture console errors
   const errors: string[] = []
-  page.on('pageerror', (err) => errors.push(String(err)))
-  page.on('console', (msg) => {
+  page.on('pageerror', (err: any) => errors.push(String(err)))
+  page.on('console', (msg: any) => {
     if (msg.type() === 'error') errors.push(msg.text())
   })
   return errors
