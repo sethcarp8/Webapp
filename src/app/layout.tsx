@@ -1,10 +1,11 @@
-import "./globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import type { ReactNode } from "react";
+import Link from "next/link";
 import { ThemeProvider } from "@/components/providers";
+import { AppShell, Header, Footer } from "@/components/app-shell";
+import { Inline } from "@/components/layout";
+import "./globals.css";
 
-/* ––––– Google Fonts ––––– */
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -15,53 +16,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-/* ––––– SEO / Meta ––––– */
 export const metadata: Metadata = {
   title: "Kauai Property Solutions",
-  description: "Personal home and guest care",
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  verification: {
-    google: 'your-google-verification-code', // Add your Google Search Console verification code
-  },
-  other: {
-    // Security-focused meta tags
-    'X-UA-Compatible': 'IE=edge',
-    'viewport': 'width=device-width, initial-scale=1, shrink-to-fit=no',
-    'format-detection': 'telephone=no',
-    'theme-color': '#2563eb', // Blue theme color
-    'msapplication-TileColor': '#2563eb',
-    'apple-mobile-web-app-capable': 'yes',
-    'apple-mobile-web-app-status-bar-style': 'default',
-    'apple-mobile-web-app-title': 'Kauai Property Solutions',
-  },
+  description: "Professional property management and real estate services in Kauai",
 };
 
-/* ––––– Root Layout ––––– */
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* Additional security meta tags */}
-        <meta name="referrer" content="strict-origin-when-cross-origin" />
-        <meta name="robots" content="index, follow" />
-        <meta name="googlebot" content="index, follow" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="theme-color" content="#2563eb" />
-        <meta name="msapplication-TileColor" content="#2563eb" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="Kauai Property Solutions" />
-      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
@@ -69,7 +35,60 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <AppShell
+            header={
+              <Header
+                logo={
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
+                      <span className="text-primary-foreground font-bold text-sm">K</span>
+                    </div>
+                    <span className="font-semibold text-lg">Kauai Property Solutions</span>
+                  </div>
+                }
+                navigation={
+                  <Inline className="gap-6">
+                    <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
+                      Home
+                    </Link>
+                    <Link href="/style-guide" className="text-sm font-medium hover:text-primary transition-colors">
+                      Style Guide
+                    </Link>
+                  </Inline>
+                }
+              />
+            }
+            footer={
+              <Footer
+                logo={
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 bg-primary rounded-md flex items-center justify-center">
+                      <span className="text-primary-foreground font-bold text-xs">K</span>
+                    </div>
+                    <span className="font-semibold">Kauai Property Solutions</span>
+                  </div>
+                }
+                links={
+                  <>
+                    <Link href="/" className="text-sm hover:text-primary transition-colors">
+                      Home
+                    </Link>
+                    <Link href="/style-guide" className="text-sm hover:text-primary transition-colors">
+                      Style Guide
+                    </Link>
+                    <Link href="/contact" className="text-sm hover:text-primary transition-colors">
+                      Contact
+                    </Link>
+                  </>
+                }
+                copyright={
+                  <p>© 2024 Kauai Property Solutions. All rights reserved.</p>
+                }
+              />
+            }
+          >
+            {children}
+          </AppShell>
         </ThemeProvider>
       </body>
     </html>

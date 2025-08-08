@@ -1,5 +1,16 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui";
 import { designTokens } from "@/lib/tokens";
+import { 
+  Container, 
+  Stack, 
+  Inline, 
+  Cluster, 
+  Grid, 
+  Section, 
+  Divider, 
+  VisuallyHidden,
+  SkipToContent 
+} from "@/components/layout";
 
 export default function StyleGuide() {
   return (
@@ -10,6 +21,280 @@ export default function StyleGuide() {
           Design system documentation and component examples
         </p>
       </div>
+
+      {/* Layout Section */}
+      <section>
+        <Card>
+          <CardHeader>
+            <CardTitle>Layout Primitives</CardTitle>
+            <CardDescription>
+              Responsive layout components for consistent spacing and alignment
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-8">
+            
+            {/* Container */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Container</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Responsive container with max-widths and consistent padding
+              </p>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-medium mb-2">Small Container</h4>
+                  <Container size="sm" className="bg-muted p-4 rounded-md">
+                    <p className="text-sm">This is a small container with max-width 640px</p>
+                  </Container>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">Large Container (Default)</h4>
+                  <Container className="bg-muted p-4 rounded-md">
+                    <p className="text-sm">This is the default large container with max-width 1024px</p>
+                  </Container>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">Full Width Container</h4>
+                  <Container size="full" className="bg-muted p-4 rounded-md">
+                    <p className="text-sm">This is a full-width container with no max-width</p>
+                  </Container>
+                </div>
+              </div>
+            </div>
+
+            {/* Stack */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Stack</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Vertical layout with consistent spacing between items
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="font-medium mb-2">Small Gap</h4>
+                  <Stack gap="sm" className="bg-muted p-4 rounded-md">
+                    <div className="bg-background p-2 rounded">Item 1</div>
+                    <div className="bg-background p-2 rounded">Item 2</div>
+                    <div className="bg-background p-2 rounded">Item 3</div>
+                  </Stack>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">Large Gap</h4>
+                  <Stack gap="lg" className="bg-muted p-4 rounded-md">
+                    <div className="bg-background p-2 rounded">Item 1</div>
+                    <div className="bg-background p-2 rounded">Item 2</div>
+                    <div className="bg-background p-2 rounded">Item 3</div>
+                  </Stack>
+                </div>
+              </div>
+            </div>
+
+            {/* Inline */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Inline</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Horizontal layout with consistent spacing between items
+              </p>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-medium mb-2">Default (Wrapped)</h4>
+                  <Inline className="bg-muted p-4 rounded-md">
+                    <div className="bg-background p-2 rounded">Item 1</div>
+                    <div className="bg-background p-2 rounded">Item 2</div>
+                    <div className="bg-background p-2 rounded">Item 3</div>
+                    <div className="bg-background p-2 rounded">Item 4</div>
+                    <div className="bg-background p-2 rounded">Item 5</div>
+                  </Inline>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">No Wrap</h4>
+                  <Inline wrap={false} className="bg-muted p-4 rounded-md">
+                    <div className="bg-background p-2 rounded">Item 1</div>
+                    <div className="bg-background p-2 rounded">Item 2</div>
+                    <div className="bg-background p-2 rounded">Item 3</div>
+                  </Inline>
+                </div>
+              </div>
+            </div>
+
+            {/* Cluster */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Cluster</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Flexible horizontal layout with gap spacing (no margin collapse)
+              </p>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-medium mb-2">Default Cluster</h4>
+                  <Cluster className="bg-muted p-4 rounded-md">
+                    <div className="bg-background p-2 rounded">Tag 1</div>
+                    <div className="bg-background p-2 rounded">Tag 2</div>
+                    <div className="bg-background p-2 rounded">Tag 3</div>
+                    <div className="bg-background p-2 rounded">Tag 4</div>
+                  </Cluster>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">Justify Between</h4>
+                  <Cluster justify="between" className="bg-muted p-4 rounded-md">
+                    <div className="bg-background p-2 rounded">Left</div>
+                    <div className="bg-background p-2 rounded">Right</div>
+                  </Cluster>
+                </div>
+              </div>
+            </div>
+
+            {/* Grid */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Grid</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Responsive grid layout with automatic column adjustments
+              </p>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-medium mb-2">2 Columns (Responsive)</h4>
+                  <Grid cols={2} className="bg-muted p-4 rounded-md">
+                    <div className="bg-background p-4 rounded">Grid Item 1</div>
+                    <div className="bg-background p-4 rounded">Grid Item 2</div>
+                    <div className="bg-background p-4 rounded">Grid Item 3</div>
+                    <div className="bg-background p-4 rounded">Grid Item 4</div>
+                  </Grid>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">3 Columns (Responsive)</h4>
+                  <Grid cols={3} className="bg-muted p-4 rounded-md">
+                    <div className="bg-background p-4 rounded">Grid Item 1</div>
+                    <div className="bg-background p-4 rounded">Grid Item 2</div>
+                    <div className="bg-background p-4 rounded">Grid Item 3</div>
+                  </Grid>
+                </div>
+              </div>
+            </div>
+
+            {/* Section */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Section</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Content sections with consistent vertical spacing
+              </p>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-medium mb-2">Small Spacing</h4>
+                  <Section spacing="sm" className="bg-muted rounded-md">
+                    <div className="bg-background p-4 rounded">
+                      <h5 className="font-medium mb-2">Section Content</h5>
+                      <p className="text-sm">This section has small spacing (py-8)</p>
+                    </div>
+                  </Section>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">Large Spacing (Default)</h4>
+                  <Section className="bg-muted rounded-md">
+                    <div className="bg-background p-4 rounded">
+                      <h5 className="font-medium mb-2">Section Content</h5>
+                      <p className="text-sm">This section has large spacing (py-16 lg:py-24)</p>
+                    </div>
+                  </Section>
+                </div>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Divider</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Visual separators with different sizes and orientations
+              </p>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-medium mb-2">Horizontal Dividers</h4>
+                  <div className="space-y-2">
+                    <div className="bg-muted p-4 rounded">
+                      <p className="text-sm mb-2">Content above</p>
+                      <Divider size="sm" />
+                      <p className="text-sm mt-2">Content below</p>
+                    </div>
+                    <div className="bg-muted p-4 rounded">
+                      <p className="text-sm mb-2">Content above</p>
+                      <Divider size="lg" />
+                      <p className="text-sm mt-2">Content below</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">Vertical Divider</h4>
+                  <Inline className="bg-muted p-4 rounded-md">
+                    <span className="text-sm">Left content</span>
+                    <Divider orientation="vertical" size="md" />
+                    <span className="text-sm">Right content</span>
+                  </Inline>
+                </div>
+              </div>
+            </div>
+
+            {/* Accessibility Components */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Accessibility Components</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Components for improved accessibility and screen reader support
+              </p>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-medium mb-2">Visually Hidden</h4>
+                  <div className="bg-muted p-4 rounded-md">
+                    <p className="text-sm">This text is visible</p>
+                    <VisuallyHidden>This text is hidden visually but accessible to screen readers</VisuallyHidden>
+                    <p className="text-sm mt-2">This text is also visible</p>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">Skip to Content</h4>
+                  <div className="bg-muted p-4 rounded-md">
+                    <p className="text-sm mb-2">
+                      Press Tab to see the skip link appear at the top of the page
+                    </p>
+                    <SkipToContent href="#main-content">
+                      Skip to main content
+                    </SkipToContent>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Responsive Examples */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Responsive Layout Examples</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                How layout primitives adapt to different screen sizes
+              </p>
+              <div className="space-y-6">
+                <div>
+                  <h4 className="font-medium mb-2">Responsive Grid</h4>
+                  <Grid cols={4} className="bg-muted p-4 rounded-md">
+                    <div className="bg-background p-3 rounded text-xs">1 col mobile</div>
+                    <div className="bg-background p-3 rounded text-xs">2 cols tablet</div>
+                    <div className="bg-background p-3 rounded text-xs">4 cols desktop</div>
+                    <div className="bg-background p-3 rounded text-xs">Responsive</div>
+                  </Grid>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">Responsive Stack to Inline</h4>
+                  <div className="md:hidden">
+                    <Stack gap="sm" className="bg-muted p-4 rounded-md">
+                      <div className="bg-background p-2 rounded text-xs">Stacked on mobile</div>
+                      <div className="bg-background p-2 rounded text-xs">Vertical layout</div>
+                    </Stack>
+                  </div>
+                  <div className="hidden md:block">
+                    <Inline className="bg-muted p-4 rounded-md">
+                      <div className="bg-background p-2 rounded text-xs">Inline on desktop</div>
+                      <div className="bg-background p-2 rounded text-xs">Horizontal layout</div>
+                    </Inline>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </CardContent>
+        </Card>
+      </section>
 
       {/* Typography and Elements Section */}
       <section>
