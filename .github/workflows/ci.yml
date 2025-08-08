@@ -29,15 +29,14 @@ jobs:
     - name: Run type check
       run: npm run lint
       
-    - name: Setup Node.js for Firebase functions
-      uses: actions/setup-node@v4
-      with:
-        node-version: '22'
-        cache: 'npm'
-        
-    - name: Build Firebase functions
+    - name: Install Firebase functions dependencies
       run: |
         cd functions
         npm ci
+      working-directory: ./
+      
+    - name: Build Firebase functions
+      run: |
+        cd functions
         npm run build
       working-directory: ./
