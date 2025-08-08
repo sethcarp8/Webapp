@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui"
-import { PageTitle, KeyValue, InfoCallout, Stat, StepList, PropertyCard, UpsellCard, OrderSummary, EmptyState, Testimonial, CTA, FeatureGrid, Hero } from "@/components/content"
+import { PageTitle, KeyValue, InfoCallout, Stat, StepList, PropertyCard, UpsellCard, OrderSummary, EmptyState, CTA, FeatureGrid, Hero, Testimonial } from "@/components/content"
 import { Calendar } from "lucide-react"
 
 export default function ContentPage() {
@@ -91,7 +91,7 @@ export default function ContentPage() {
           </CardHeader>
           <CardContent className="space-y-6">
             <FeatureGrid features={[{ title: "Beachfront", description: "Steps from the sand" }, { title: "Mountain views", description: "Panoramic vistas" }, { title: "Pool access", description: "Resort amenities" }]} />
-            <Testimonial quote="Amazing stay!" author="Sarah Johnson" role="Guest" />
+            <Testimonial testimonials={[{ quote: "Amazing stay!", author: { name: "Sarah Johnson", title: "Guest" }, rating: 5 }]} columns={1} variant="cards" />
           </CardContent>
         </Card>
       </section>

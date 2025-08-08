@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Container, Section, Grid, Stack, Divider } from "@/components/layout"
+import { Container, Section, Grid, Stack } from "@/components/layout"
 import { PageTitle, KeyValue, OrderSummary, InfoCallout } from "@/components/content"
 
 export interface OrderConfirmationTemplateProps {

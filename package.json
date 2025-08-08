@@ -8,7 +8,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "test:pw:install": "npx playwright install --with-deps --yes | cat",
+    "test:pw": "playwright test",
+    "test:viz": "playwright test tests/style-guide.spec.ts"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.11",
@@ -44,6 +48,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
+    "@playwright/test": "^1.54.2",
     "@tailwindcss/postcss": "^4.1.11",
     "@types/node": "^20.19.9",
     "@types/react": "^19.1.8",
@@ -52,8 +57,12 @@
     "autoprefixer": "^10.4.21",
     "eslint": "^9.31.0",
     "eslint-config-next": "15.4.3",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
     "ignore-loader": "^0.1.2",
+    "playwright": "^1.54.2",
     "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
     "typescript": "^5.8.3"
   }
 }

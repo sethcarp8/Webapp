@@ -1,6 +1,6 @@
 import * as React from "react"
-import { Container, Section, Grid, Stack, Divider } from "@/components/layout"
-import { PageTitle, KeyValue, InfoCallout, StepList, UpsellCard, PropertyCard } from "@/components/content"
+import { Container, Section, Grid, Stack } from "@/components/layout"
+import { PageTitle, KeyValue, InfoCallout, UpsellCard, PropertyCard } from "@/components/content"
 
 export interface GuestDashboardTemplateProps {
   userName: string

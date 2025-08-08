@@ -13,6 +13,10 @@ import {
 } from "@/components/layout";
 import { UIComponentsDemo } from "@/components/ui-demo";
 import { ContentComponentsDemo } from "@/components/content-demo";
+import { PageTemplatesDemo } from "@/components/page-templates-demo";
+import ReducedMotionDemo from "@/components/accessibility/reduced-motion-demo";
+import DialogAccessibilityDemo from "@/components/accessibility/dialog-demo";
+import Image from "next/image";
 
 export default function StyleGuide() {
   return (
@@ -23,6 +27,201 @@ export default function StyleGuide() {
           Design system documentation and component examples
         </p>
       </div>
+
+      {/* Page Templates Section */}
+      <section>
+        <Card>
+          <CardHeader>
+            <CardTitle>Page Templates</CardTitle>
+            <CardDescription>
+              Complete page-level templates using primitives and core components
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <PageTemplatesDemo />
+
+            <div className="mt-8 space-y-3">
+              <h4 className="text-base font-semibold">Screenshots</h4>
+              <p className="text-sm text-muted-foreground">Placeholder representations of page templates. Click to view live routes where applicable.</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Guest Dashboard */}
+                <a href="/guest-dashboard" className="group block">
+                  <div className="border rounded-lg overflow-hidden">
+                    <Image
+                      src="/screenshots/guest-dashboard.svg"
+                      alt="Guest Dashboard screenshot"
+                      width={1200}
+                      height={800}
+                      className="w-full h-auto group-hover:opacity-90 transition"
+                      priority
+                    />
+                  </div>
+                  <div className="mt-2 flex items-center gap-2 text-sm">
+                    <span className="font-medium">Guest Dashboard</span>
+                    <span className="text-muted-foreground">/guest-dashboard</span>
+                  </div>
+                </a>
+
+                {/* Order Confirmation */}
+                <a href="/order-confirmation" className="group block">
+                  <div className="border rounded-lg overflow-hidden">
+                    <Image
+                      src="/screenshots/order-confirmation.svg"
+                      alt="Order Confirmation screenshot"
+                      width={1200}
+                      height={800}
+                      className="w-full h-auto group-hover:opacity-90 transition"
+                    />
+                  </div>
+                  <div className="mt-2 flex items-center gap-2 text-sm">
+                    <span className="font-medium">Order Confirmation</span>
+                    <span className="text-muted-foreground">/order-confirmation</span>
+                  </div>
+                </a>
+
+                {/* Admin Arrivals */}
+                <a href="/admin-arrivals" className="group block">
+                  <div className="border rounded-lg overflow-hidden">
+                    <Image
+                      src="/screenshots/admin-arrivals.svg"
+                      alt="Admin Arrivals screenshot"
+                      width={1200}
+                      height={800}
+                      className="w-full h-auto group-hover:opacity-90 transition"
+                    />
+                  </div>
+                  <div className="mt-2 flex items-center gap-2 text-sm">
+                    <span className="font-medium">Admin Arrivals</span>
+                    <span className="text-muted-foreground">/admin-arrivals</span>
+                  </div>
+                </a>
+
+                {/* Not Found (no direct route; link to an invalid path) */}
+                <a href="/this-page-does-not-exist" className="group block">
+                  <div className="border rounded-lg overflow-hidden">
+                    <Image
+                      src="/screenshots/not-found.svg"
+                      alt="Not Found page screenshot"
+                      width={1200}
+                      height={800}
+                      className="w-full h-auto group-hover:opacity-90 transition"
+                    />
+                  </div>
+                  <div className="mt-2 flex items-center gap-2 text-sm">
+                    <span className="font-medium">Not Found (404)</span>
+                    <span className="text-muted-foreground">navigate to any unknown route</span>
+                  </div>
+                </a>
+
+                {/* Error (no direct route; static preview only) */}
+                <div className="group block">
+                  <div className="border rounded-lg overflow-hidden">
+                    <Image
+                      src="/screenshots/error.svg"
+                      alt="Error page screenshot"
+                      width={1200}
+                      height={800}
+                      className="w-full h-auto group-hover:opacity-90 transition"
+                    />
+                  </div>
+                  <div className="mt-2 flex items-center gap-2 text-sm">
+                    <span className="font-medium">Error (500)</span>
+                    <span className="text-muted-foreground">shown on unhandled errors</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* Standards & Guidelines */}
+      <section>
+        <Card>
+          <CardHeader>
+            <CardTitle>Standards & Guidelines</CardTitle>
+            <CardDescription>
+              Naming conventions, copy standards, and accessibility expectations for a consistent, inclusive UI
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-8">
+            {/* Naming Conventions */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Naming Conventions</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                <div className="space-y-2">
+                  <h4 className="font-medium">Components & Files</h4>
+                  <ul className="space-y-1">
+                    <li>• React components: <strong>PascalCase</strong> (e.g., <code>GuestDashboard.tsx</code>)</li>
+                    <li>• Hooks/utilities: <strong>camelCase</strong> (e.g., <code>useGuestData.ts</code>, <code>prefersReducedMotion()</code>)</li>
+                    <li>• Folders: <strong>kebab-case</strong> (e.g., <code>admin-arrivals/</code>)</li>
+                    <li>• CSS classes: <strong>kebab-case</strong> with semantics (avoid abbreviations)</li>
+                  </ul>
+                </div>
+                <div className="space-y-2">
+                  <h4 className="font-medium">Variables & Props</h4>
+                  <ul className="space-y-1">
+                    <li>• Use <strong>descriptive names</strong>; avoid 1–2 letter identifiers</li>
+                    <li>• Booleans start with <strong>is/has/can</strong> (e.g., <code>isLoading</code>)</li>
+                    <li>• Event handlers start with <strong>on</strong> (e.g., <code>onSubmit</code>)</li>
+                    <li>• Avoid abbreviations; prefer full words (e.g., <code>arrivalMethod</code> over <code>arrMthd</code>)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Copy Standards */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Copy Standards</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                <div className="space-y-2">
+                  <h4 className="font-medium">Tone & Style</h4>
+                  <ul className="space-y-1">
+                    <li>• <strong>Clear, concise, friendly</strong> tone; avoid jargon</li>
+                    <li>• Sentence case for labels and buttons (e.g., “View details”)</li>
+                    <li>• Use <strong>action verbs</strong> for buttons and links</li>
+                    <li>• Provide <strong>helpful error messages</strong> with next steps</li>
+                  </ul>
+                </div>
+                <div className="space-y-2">
+                  <h4 className="font-medium">Microcopy</h4>
+                  <ul className="space-y-1">
+                    <li>• Empty states describe <strong>what’s missing</strong> and <strong>what to do</strong></li>
+                    <li>• Tooltips: clarify purpose, not restate label</li>
+                    <li>• Placeholders aren’t labels; ensure visible labels exist</li>
+                    <li>• Dates: use <strong>Mar 15, 2024</strong> format; times in local time with AM/PM</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Accessibility Expectations */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Accessibility Expectations</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                <div className="space-y-2">
+                  <h4 className="font-medium">Core</h4>
+                  <ul className="space-y-1">
+                    <li>• Maintain visible <strong>focus outlines</strong> and keyboard operability</li>
+                    <li>• Provide <strong>Skip to content</strong> and one <strong>main</strong> landmark</li>
+                    <li>• Honor <strong>prefers-reduced-motion</strong> and minimize motion by default</li>
+                    <li>• Ensure <strong>color contrast</strong> (AA minimums)</li>
+                  </ul>
+                </div>
+                <div className="space-y-2">
+                  <h4 className="font-medium">Patterns</h4>
+                  <ul className="space-y-1">
+                    <li>• Forms: associate <strong>labels</strong>; use <code>aria-describedby</code> for help/error text</li>
+                    <li>• Media: meaningful <strong>alt</strong> text or empty alt if decorative</li>
+                    <li>• Dialogs: <strong>trap focus</strong>, support <strong>Esc</strong>, restore focus to trigger</li>
+                    <li>• Announce async state changes with <strong>aria-live</strong> when appropriate</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
 
       {/* Content Components Section */}
       <section>
@@ -826,6 +1025,53 @@ export default function StyleGuide() {
           </CardHeader>
           <CardContent>
             <div className="space-y-8">
+              {/* Accessibility Checklist */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Accessibility Checklist</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <h4 className="font-medium">Global</h4>
+                    <ul className="text-sm space-y-1">
+                      <li>• Provide a visible <strong>focus outline</strong> for all interactive elements</li>
+                      <li>• Include a <strong>Skip to content</strong> link and a single <strong>main landmark</strong></li>
+                      <li>• Ensure sufficient <strong>color contrast</strong> for text and UI</li>
+                      <li>• Honor <strong>prefers-reduced-motion</strong> to minimize animations</li>
+                      <li>• Use <strong>semantic HTML</strong> and ARIA only when needed</li>
+                      <li>• Maintain <strong>logical tab order</strong> and keyboard operability</li>
+                    </ul>
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="font-medium">Components & Templates</h4>
+                    <ul className="text-sm space-y-1">
+                      <li>• Buttons/links have <strong>discernible text</strong>, not icons alone</li>
+                      <li>• Images have meaningful <strong>alt</strong> text or <code>alt=&quot;&quot;</code> if decorative</li>
+                      <li>• Forms include <strong>labels</strong>, <strong>aria-describedby</strong> for help/error text</li>
+                      <li>• Dialogs/overlays (when added) <strong>trap focus</strong>, support <strong>Esc</strong>, and restore focus</li>
+                      <li>• Error states provide <strong>clear guidance</strong> and recovery actions</li>
+                      <li>• 404 page offers <strong>navigation paths</strong> back to the app</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Reduced Motion Demo */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Reduced Motion Demo</h3>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Toggle your OS setting for &quot;Reduce Motion&quot; to see animations pause. The left example uses CSS-only
+                  motion-reduce; the right example updates live via a media query listener.
+                </p>
+                <ReducedMotionDemo />
+              </div>
+
+              {/* Dialog Accessibility Demo */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Dialog Focus & Escape Behavior</h3>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Verify focus trapping, Escape-to-close, overlay click-to-close, and focus restoration to the trigger.
+                </p>
+                <DialogAccessibilityDemo />
+              </div>
               
               {/* Light Theme Pairs */}
               <div>

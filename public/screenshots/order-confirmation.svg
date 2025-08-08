@@ -1,0 +1,29 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Order Confirmation screenshot placeholder">
+  <defs>
+    <linearGradient id="oc-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5fbf7"/>
+      <stop offset="100%" stop-color="#e8f7ee"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#oc-bg)"/>
+  <rect x="0" y="0" width="1200" height="72" fill="#16a34a"/>
+  <g>
+    <circle cx="600" cy="160" r="40" fill="#16a34a" opacity="0.15"/>
+    <circle cx="600" cy="160" r="28" fill="#16a34a" opacity="0.25"/>
+  </g>
+  <rect x="24" y="220" width="1152" height="220" rx="12" fill="#ffffff" stroke="#e5e7eb"/>
+  <rect x="48" y="252" width="84" height="84" rx="12" fill="#f3f4f6"/>
+  <rect x="152" y="252" width="944" height="28" rx="6" fill="#f3f4f6"/>
+  <rect x="152" y="288" width="300" height="20" rx="6" fill="#f3f4f6"/>
+  <rect x="24" y="456" width="560" height="220" rx="12" fill="#ffffff" stroke="#e5e7eb"/>
+  <rect x="600" y="456" width="576" height="220" rx="12" fill="#ffffff" stroke="#e5e7eb"/>
+  <rect x="48" y="488" width="512" height="24" rx="6" fill="#f3f4f6"/>
+  <rect x="48" y="520" width="512" height="24" rx="6" fill="#f3f4f6"/>
+  <rect x="48" y="552" width="512" height="24" rx="6" fill="#f3f4f6"/>
+  <rect x="624" y="488" width="528" height="24" rx="6" fill="#f3f4f6"/>
+  <rect x="624" y="520" width="528" height="24" rx="6" fill="#f3f4f6"/>
+  <rect x="624" y="552" width="528" height="24" rx="6" fill="#f3f4f6"/>
+  <text x="600" y="46" text-anchor="middle" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="22" font-weight="700" fill="#ffffff">Order Confirmation</text>
+  <text x="600" y="792" text-anchor="middle" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="12" fill="#64748b">Placeholder representation – not an actual screenshot</text>
+</svg>
+

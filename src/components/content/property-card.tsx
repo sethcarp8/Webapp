@@ -12,7 +12,7 @@ export interface PropertyCardProps extends React.HTMLAttributes<HTMLDivElement> 
 }
 
 export const PropertyCard = React.forwardRef<HTMLDivElement, PropertyCardProps>(
-  ({ className, imageSrc = "/api/placeholder/400/300", title, location, tags = [], price, ...props }, ref) => {
+  ({ className, imageSrc = "/screenshots/guest-dashboard.svg", title, location, tags = [], price, ...props }, ref) => {
     return (
       <Card ref={ref} className={cn(className)} {...props}>
         <CardHeader>

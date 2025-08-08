@@ -27,9 +27,11 @@ function Pair({ label, bg, fg, usage }: { label: string; bg: string; fg: string;
   )
 }
 
+type PairRecord = Record<string, { background: string } & ({ text: string; usage: string } | { ring: string; usage: string })>
+
 export default function ContrastPage() {
-  const lightPairs = Object.entries(designTokens.lightThemePairs)
-  const darkPairs = Object.entries(designTokens.darkThemePairs)
+  const lightPairs: [string, PairRecord[keyof PairRecord]][] = Object.entries(designTokens.lightThemePairs as unknown as PairRecord)
+  const darkPairs: [string, PairRecord[keyof PairRecord]][] = Object.entries(designTokens.darkThemePairs as unknown as PairRecord)
 
   return (
     <div className="container mx-auto py-8 space-y-8">
@@ -46,8 +48,8 @@ export default function ContrastPage() {
           </CardHeader>
           <CardContent>
             <div className="grid gap-4 md:grid-cols-2">
-              {lightPairs.map(([key, pair]: any) => (
-                <Pair key={key} label={key} bg={pair.background} fg={(pair as any).text ?? (pair as any).ring} usage={pair.usage} />
+              {lightPairs.map(([key, pair]) => (
+                <Pair key={key} label={key} bg={pair.background} fg={'text' in pair ? pair.text : (pair as { ring: string }).ring} usage={pair.usage} />
               ))}
             </div>
           </CardContent>
@@ -62,8 +64,8 @@ export default function ContrastPage() {
           </CardHeader>
           <CardContent>
             <div className="grid gap-4 md:grid-cols-2">
-              {darkPairs.map(([key, pair]: any) => (
-                <Pair key={key} label={key} bg={pair.background} fg={(pair as any).text ?? (pair as any).ring} usage={pair.usage} />
+              {darkPairs.map(([key, pair]) => (
+                <Pair key={key} label={key} bg={pair.background} fg={'text' in pair ? pair.text : (pair as { ring: string }).ring} usage={pair.usage} />
               ))}
             </div>
           </CardContent>
