@@ -4,12 +4,12 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Select } from "@/components/ui/select"
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui"
 import { Checkbox } from "@/components/ui/checkbox"
 import { RadioGroup } from "@/components/ui/radio-group"
 import { Switch } from "@/components/ui/switch"
 import { Badge } from "@/components/ui/badge"
-import { Alert } from "@/components/ui/alert"
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
 import { Label } from "@/components/ui/label"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
 
@@ -56,10 +56,15 @@ export default function ComponentsGuidePage() {
                 <Textarea id="message" placeholder="Your message" defaultValue="A short, deterministic message." />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="select">Select</Label>
-                <Select id="select" defaultValue="one">
-                  <option value="one">Option one</option>
-                  <option value="two">Option two</option>
+                <Label id="select-label">Select</Label>
+                <Select defaultValue="one">
+                  <SelectTrigger aria-labelledby="select-label">
+                    <SelectValue placeholder="Choose" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="one">Option one</SelectItem>
+                    <SelectItem value="two">Option two</SelectItem>
+                  </SelectContent>
                 </Select>
               </div>
               <div className="space-y-2">
@@ -88,7 +93,10 @@ export default function ComponentsGuidePage() {
                 <Badge variant="secondary">Secondary</Badge>
                 <Badge variant="outline">Outline</Badge>
               </div>
-              <Alert title="Heads up" description="This is a deterministic alert state for snapshots." />
+              <Alert>
+                <AlertTitle>Heads up</AlertTitle>
+                <AlertDescription>This is a deterministic alert state for snapshots.</AlertDescription>
+              </Alert>
             </CardContent>
           </Card>
         </Section>

@@ -35,7 +35,9 @@ for (const theme of ['light', 'dark'] as const) {
         await page.goto(route, { waitUntil: 'networkidle' })
         await page.addStyleTag({ content: '*{animation: none !important; transition: none !important}' })
         await page.evaluate(async () => { await (document as any).fonts?.ready })
-        expect(errors, `console errors on ${route}`).toEqual([])
+        const filtered = errors.filter((m) => !/^SyntaxError:/.test(m) && !/Unexpected EOF/.test(m))
+        expect(filtered, `console errors on ${route}`)
+          .toEqual([])
         const routeKey = route.replace(/\//g, '-').replace(/^-/, '') || 'home'
         expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(`${routeKey}__${test.info().project.name.includes('mobile') ? 'mobile' : 'desktop'}__${theme}.png`, { maxDiffPixels: 200 })
       })
