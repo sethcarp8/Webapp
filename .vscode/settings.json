@@ -1,0 +1,24 @@
+{
+  "typescript.preferences.includePackageJsonAutoImports": "auto",
+  "typescript.preferences.includeSourceFiles": false,
+  "typescript.exclude": [
+    "functions/**/*",
+    "functions_temp/**/*"
+  ],
+  "files.exclude": {
+    "functions/node_modules": true,
+    "functions/lib": true,
+    "functions_temp": true,
+    ".next": true,
+    "test-results": true
+  },
+  "search.exclude": {
+    "functions/node_modules": true,
+    "functions/lib": true,
+    "functions_temp": true,
+    ".next": true,
+    "test-results": true
+  },
+  "typescript.validate.enable": true,
+  "typescript.check.npmIsInstalled": false
+}

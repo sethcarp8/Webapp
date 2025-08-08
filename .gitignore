@@ -44,3 +44,8 @@ next-env.d.ts
 
 # Firebase Functions environment file
 functions/.env
+
+# Firebase Functions build artifacts
+functions/node_modules
+functions/lib
+functions_temp
