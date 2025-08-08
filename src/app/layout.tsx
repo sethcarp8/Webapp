@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
-import { ThemeProvider } from "@/components/providers";
+import Providers from "@/components/Providers";
 import { AppShell, Header, Footer } from "@/components/app-shell";
 import { Inline } from "@/components/layout";
 import "./globals.css";
+import "../../styles/tokens.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,12 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <Providers>
           <AppShell
             header={
               <Header
@@ -51,9 +47,15 @@ export default function RootLayout({
                     <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
                       Home
                     </Link>
-                    <Link href="/style-guide" className="text-sm font-medium hover:text-primary transition-colors">
+                     <Link href="/style-guide" className="text-sm font-medium hover:text-primary transition-colors">
                       Style Guide
                     </Link>
+                     <Link href="/style-guide/tokens" className="text-sm font-medium hover:text-primary transition-colors">
+                      Tokens
+                     </Link>
+                     <Link href="/style-guide/contrast" className="text-sm font-medium hover:text-primary transition-colors">
+                      Contrast
+                     </Link>
                   </Inline>
                 }
               />
@@ -89,7 +91,7 @@ export default function RootLayout({
           >
             {children}
           </AppShell>
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
