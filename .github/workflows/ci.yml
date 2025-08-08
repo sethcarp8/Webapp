@@ -19,11 +19,19 @@ jobs:
       with:
         node-version: '20'
         
+    - name: Clear npm cache
+      run: npm cache clean --force
+      
     - name: Install dependencies
-      run: npm ci
+      run: |
+        npm ci --no-audit
+        npm prune
       
     - name: Build Next.js app
-      run: npm run build
+      run: |
+        echo "Starting Next.js build..."
+        npm run build
+        echo "Next.js build completed successfully"
       
     - name: Run linting
       run: npm run lint
