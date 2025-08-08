@@ -1,4 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui";
+import { designTokens } from "@/lib/tokens";
 
 /**
  * Style Guide Page
@@ -13,6 +14,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
  * - Layout patterns
  * - Spacing
  * - Animations
+ * - Design Tokens
  */
 export default function StyleGuidePage() {
   return (
@@ -32,6 +34,251 @@ export default function StyleGuidePage() {
       {/* Content */}
       <main className="container mx-auto px-6 py-12">
         <div className="grid gap-8">
+          {/* Design Tokens Section */}
+          <section>
+            <Card>
+              <CardHeader>
+                <CardTitle>Design Tokens</CardTitle>
+                <CardDescription>
+                  Complete design token system with color, typography, spacing, radius, elevation, motion, and z-index scales
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-8">
+                  {/* Color Tokens */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4">Color Tokens</h3>
+                    <div className="grid gap-6">
+                      {/* Primary Colors */}
+                      <div>
+                        <h4 className="text-sm font-medium text-muted-foreground mb-3">Primary</h4>
+                        <div className="grid grid-cols-11 gap-2">
+                          {Object.entries(designTokens.color.primary).map(([key, value]) => (
+                            <div key={key} className="text-center">
+                              <div 
+                                className="h-12 rounded-md mb-2" 
+                                style={{ backgroundColor: value }}
+                              />
+                              <p className="text-xs font-mono">{key}</p>
+                              <p className="text-xs text-muted-foreground">{value}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      {/* Neutral Colors */}
+                      <div>
+                        <h4 className="text-sm font-medium text-muted-foreground mb-3">Neutral</h4>
+                        <div className="grid grid-cols-11 gap-2">
+                          {Object.entries(designTokens.color.neutral).map(([key, value]) => (
+                            <div key={key} className="text-center">
+                              <div 
+                                className="h-12 rounded-md mb-2" 
+                                style={{ backgroundColor: value }}
+                              />
+                              <p className="text-xs font-mono">{key}</p>
+                              <p className="text-xs text-muted-foreground">{value}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      {/* Semantic Colors */}
+                      <div className="grid grid-cols-3 gap-6">
+                        <div>
+                          <h4 className="text-sm font-medium text-muted-foreground mb-3">Success</h4>
+                          <div className="grid grid-cols-6 gap-2">
+                            {Object.entries(designTokens.color.success).slice(0, 6).map(([key, value]) => (
+                              <div key={key} className="text-center">
+                                <div 
+                                  className="h-8 rounded-md mb-1" 
+                                  style={{ backgroundColor: value }}
+                                />
+                                <p className="text-xs font-mono">{key}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-medium text-muted-foreground mb-3">Warning</h4>
+                          <div className="grid grid-cols-6 gap-2">
+                            {Object.entries(designTokens.color.warning).slice(0, 6).map(([key, value]) => (
+                              <div key={key} className="text-center">
+                                <div 
+                                  className="h-8 rounded-md mb-1" 
+                                  style={{ backgroundColor: value }}
+                                />
+                                <p className="text-xs font-mono">{key}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-medium text-muted-foreground mb-3">Error</h4>
+                          <div className="grid grid-cols-6 gap-2">
+                            {Object.entries(designTokens.color.error).slice(0, 6).map(([key, value]) => (
+                              <div key={key} className="text-center">
+                                <div 
+                                  className="h-8 rounded-md mb-1" 
+                                  style={{ backgroundColor: value }}
+                                />
+                                <p className="text-xs font-mono">{key}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Typography Tokens */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4">Typography Tokens</h3>
+                    <div className="grid gap-6">
+                      {/* Font Sizes */}
+                      <div>
+                        <h4 className="text-sm font-medium text-muted-foreground mb-3">Font Sizes</h4>
+                        <div className="space-y-2">
+                          {Object.entries(designTokens.typography.fontSize).map(([key, value]) => (
+                            <div key={key} className="flex items-center justify-between p-2 bg-muted rounded">
+                              <span className="font-mono text-sm">{key}</span>
+                              <span className="text-sm text-muted-foreground">{value}</span>
+                              <span style={{ fontSize: value }} className="font-medium">
+                                The quick brown fox jumps over the lazy dog
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      {/* Font Weights */}
+                      <div>
+                        <h4 className="text-sm font-medium text-muted-foreground mb-3">Font Weights</h4>
+                        <div className="grid grid-cols-5 gap-4">
+                          {Object.entries(designTokens.typography.fontWeight).map(([key, value]) => (
+                            <div key={key} className="text-center p-3 bg-muted rounded">
+                              <p className="text-sm font-mono mb-1">{key}</p>
+                              <p className="text-sm text-muted-foreground mb-2">{value}</p>
+                              <p style={{ fontWeight: value }} className="text-lg">
+                                Aa
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Spacing Tokens */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4">Spacing Tokens</h3>
+                    <div className="grid grid-cols-8 gap-4">
+                      {Object.entries(designTokens.spacing).slice(0, 16).map(([key, value]) => (
+                        <div key={key} className="text-center">
+                          <div 
+                            className="bg-primary-500 rounded mb-2" 
+                            style={{ 
+                              width: value, 
+                              height: '1rem',
+                              minWidth: '1rem'
+                            }}
+                          />
+                          <p className="text-xs font-mono">{key}</p>
+                          <p className="text-xs text-muted-foreground">{value}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Radius Tokens */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4">Radius Tokens</h3>
+                    <div className="grid grid-cols-8 gap-4">
+                      {Object.entries(designTokens.radius).map(([key, value]) => (
+                        <div key={key} className="text-center">
+                          <div 
+                            className="bg-primary-500 mb-2" 
+                            style={{ 
+                              width: '3rem', 
+                              height: '3rem',
+                              borderRadius: value
+                            }}
+                          />
+                          <p className="text-xs font-mono">{key}</p>
+                          <p className="text-xs text-muted-foreground">{value}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Elevation Tokens */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4">Elevation Tokens</h3>
+                    <div className="grid grid-cols-4 gap-6">
+                      {Object.entries(designTokens.elevation).map(([key, value]) => (
+                        <div key={key} className="text-center">
+                          <div 
+                            className="bg-card border rounded-lg p-4 mb-2" 
+                            style={{ boxShadow: value }}
+                          >
+                            <div className="w-8 h-8 bg-primary-500 rounded mx-auto" />
+                          </div>
+                          <p className="text-xs font-mono">{key}</p>
+                          <p className="text-xs text-muted-foreground break-all">{value}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Motion Tokens */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4">Motion Tokens</h3>
+                    <div className="grid gap-6">
+                      {/* Duration */}
+                      <div>
+                        <h4 className="text-sm font-medium text-muted-foreground mb-3">Duration</h4>
+                        <div className="grid grid-cols-4 gap-4">
+                          {Object.entries(designTokens.motion.duration).map(([key, value]) => (
+                            <div key={key} className="text-center p-3 bg-muted rounded">
+                              <p className="text-sm font-mono">{key}</p>
+                              <p className="text-sm text-muted-foreground">{value}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      {/* Easing */}
+                      <div>
+                        <h4 className="text-sm font-medium text-muted-foreground mb-3">Easing</h4>
+                        <div className="grid grid-cols-4 gap-4">
+                          {Object.entries(designTokens.motion.easing).map(([key, value]) => (
+                            <div key={key} className="text-center p-3 bg-muted rounded">
+                              <p className="text-sm font-mono">{key}</p>
+                              <p className="text-sm text-muted-foreground break-all">{value}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Z-Index Tokens */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4">Z-Index Tokens</h3>
+                    <div className="grid grid-cols-4 gap-4">
+                      {Object.entries(designTokens.zIndex).map(([key, value]) => (
+                        <div key={key} className="text-center p-3 bg-muted rounded">
+                          <p className="text-sm font-mono">{key}</p>
+                          <p className="text-sm text-muted-foreground">{value}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+
           {/* Typography Section */}
           <section>
             <Card>
