@@ -1,0 +1,36 @@
+{
+  "folders": [
+    {
+      "name": "WebApp",
+      "path": "."
+    },
+    {
+      "name": "Functions",
+      "path": "./functions"
+    }
+  ],
+  "settings": {
+    "typescript.preferences.includePackageJsonAutoImports": "auto",
+    "files.exclude": {
+      "functions/node_modules": true,
+      "functions/lib": true,
+      "functions_temp": true,
+      ".next": true,
+      "test-results": true
+    },
+    "search.exclude": {
+      "functions/node_modules": true,
+      "functions/lib": true,
+      "functions_temp": true,
+      ".next": true,
+      "test-results": true
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-vscode.vscode-typescript-next",
+      "esbenp.prettier-vscode",
+      "ms-playwright.playwright"
+    ]
+  }
+}
