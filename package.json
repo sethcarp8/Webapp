@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prebuild": "mv functions functions_temp || true",
-    "postbuild": "mv functions_temp functions || true",
+    "prebuild": "if [ -d 'functions' ]; then mv functions functions_temp; fi",
+    "postbuild": "if [ -d 'functions_temp' ]; then mv functions_temp functions; fi",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
