@@ -34,8 +34,8 @@ test.describe('Style Guide visual snapshots', () => {
     await page.evaluate(async () => { await (document as any).fonts?.ready })
     const section = page.locator('section').filter({ hasText: 'Contrast & Accessibility' }).first()
     await expect(section).toBeVisible()
-    // Snapshot only the section for stability
-    expect(await section.screenshot()).toMatchSnapshot('a11y-section.png')
+    // Viewport snapshot after scrolling section into view for consistent dimensions
+    expect(await page.screenshot()).toMatchSnapshot('a11y-section.png')
   })
 })
 
