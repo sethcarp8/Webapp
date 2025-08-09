@@ -43,7 +43,7 @@ export default function DrawerAccessibilityDemo() {
   const [mounted, setMounted] = React.useState(false)
   const drawerRef = React.useRef<HTMLDivElement>(null)
   const triggerRef = React.useRef<HTMLButtonElement | null>(null)
-  const closeRef = React.useRef<HTMLButtonElement | null>(null)
+  const closeButtonRef = React.useRef<HTMLButtonElement>(null)
 
   useFocusTrap(open, drawerRef)
 
@@ -54,7 +54,7 @@ export default function DrawerAccessibilityDemo() {
       const prev = document.activeElement as HTMLElement | null
       triggerRef.current = prev as HTMLButtonElement | null
       document.body.style.overflow = 'hidden'
-      setTimeout(() => closeRef.current?.focus(), 0)
+      setTimeout(() => closeButtonRef.current?.focus(), 0)
       const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false) }
       document.addEventListener('keydown', onKey)
       return () => document.removeEventListener('keydown', onKey)
@@ -78,7 +78,7 @@ export default function DrawerAccessibilityDemo() {
         <h2 className="text-lg font-semibold">Accessible Drawer</h2>
         <p className="text-sm text-muted-foreground mb-3">Focus is trapped here. Press Escape or click overlay to close.</p>
         <div className="flex gap-2">
-          <Button ref={closeRef as any} onClick={() => setOpen(false)}>Close</Button>
+          <Button ref={closeButtonRef} onClick={() => setOpen(false)}>Close</Button>
           <Button variant="outline">Another Action</Button>
         </div>
       </div>
