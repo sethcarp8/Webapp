@@ -3,6 +3,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui"
 import ReducedMotionDemo from "@/components/accessibility/reduced-motion-demo"
 import DialogAccessibilityDemo from "@/components/accessibility/dialog-demo"
+import DrawerAccessibilityDemo from "@/components/accessibility/drawer-demo"
 import TooltipAccessibilityDemo from "@/components/accessibility/tooltip-demo"
 import TabsAccessibilityDemo from "@/components/accessibility/tabs-demo"
 
@@ -53,6 +54,18 @@ export default function AccessibilityPage() {
           </CardHeader>
           <CardContent>
             <DialogAccessibilityDemo />
+          </CardContent>
+        </Card>
+      </section>
+
+      <section>
+        <Card>
+          <CardHeader>
+            <CardTitle>Drawer Focus & Escape</CardTitle>
+            <CardDescription>Trap focus and close with Escape</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <DrawerAccessibilityDemo />
           </CardContent>
         </Card>
       </section>

@@ -252,6 +252,14 @@ section {
   }
 }
 
+/* Explicit reduced motion override flag for demos */
+[data-reduce-motion="true"] *,
+[data-reduce-motion="true"] *::before,
+[data-reduce-motion="true"] *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
 /* Scrollbar Styles */
 ::-webkit-scrollbar {
   width: 8px;
