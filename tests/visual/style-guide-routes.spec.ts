@@ -10,6 +10,7 @@ const routes = [
   '/style-guide/templates',
   '/style-guide/elements',
   '/style-guide/accessibility',
+  '/demo/guest',
 ]
 
 async function preparePage(page: any, theme: 'light' | 'dark') {
@@ -44,7 +45,12 @@ for (const theme of ['light', 'dark'] as const) {
         // Use viewport-only screenshots to avoid 32k height limit in CI
         const isTokensOrContrast = route.includes('/style-guide/tokens') || route.includes('/style-guide/contrast')
         const options = isTokensOrContrast ? { maxDiffPixelRatio: 0.25 } : undefined
-        expect(await page.screenshot()).toMatchSnapshot(snapshotName, options as any)
+        // Mask potentially dynamic media on /demo/guest to stabilize snapshots across platforms
+        const maskLocators = route.includes('/demo/guest') ? [page.locator('img')] : []
+        const buffer = maskLocators.length > 0
+          ? await page.screenshot({ mask: maskLocators })
+          : await page.screenshot()
+        expect(buffer).toMatchSnapshot(snapshotName, options as any)
       })
     }
   })
