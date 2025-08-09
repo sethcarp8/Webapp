@@ -4,7 +4,6 @@ import { onRequest } from "firebase-functions/v2/https";
 import * as admin from "firebase-admin";
 import { google } from "googleapis";
 import OpenAI from "openai";
-import type { Request, Response } from "express";
 import type { gmail_v1 } from "googleapis";
 import type { Credentials } from "google-auth-library";
 
@@ -29,7 +28,7 @@ export const gmailAuthURL = onRequest({
   region: "us-central1",
   cors: true,
   secrets: [GMAIL_CLIENT_ID, GMAIL_CLIENT_SECRET]
-}, (_req: Request, res: Response) => {
+}, (_req, res) => {
   try {
     // Initialize OAuth2 client at runtime
     const oAuth2Client = new google.auth.OAuth2(
@@ -55,10 +54,10 @@ export const oauthCallback = onRequest({
   region: "us-central1",
   cors: true,
   secrets: [GMAIL_CLIENT_ID, GMAIL_CLIENT_SECRET]
-}, async (req: Request, res: Response) => {
+}, async (req, res) => {
   try {
-    const { code } = req.query;
-    if (!code || typeof code !== "string") {
+    const code = ((req as any).query?.code ?? (req as any).body?.code) as string | undefined;
+    if (!code) {
       res.status(400).send("Missing authorization code");
       return;
     }
