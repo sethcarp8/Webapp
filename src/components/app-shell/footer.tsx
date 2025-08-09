@@ -14,30 +14,30 @@ const Footer = React.forwardRef<HTMLElement, FooterProps>(
       <footer
         ref={ref}
         className={cn(
-          "border-t bg-background",
+          "bg-background/95 backdrop-blur border-t border-border/30",
           className
         )}
         {...props}
       >
         <Container>
-          <Stack className="py-12 gap-8">
-            <Inline className="items-start justify-between">
+          <Stack className="py-8 md:py-10 gap-6">
+            <Inline className="items-center justify-between">
               {logo && (
                 <div className="flex items-center">
                   {logo}
                 </div>
               )}
               {links && (
-                <nav className="flex flex-wrap gap-8" aria-label="Footer navigation">
+                <nav className="flex flex-wrap gap-6 md:gap-8" aria-label="Footer navigation">
                   {links}
                 </nav>
               )}
             </Inline>
             
-            <Divider />
+            <Divider className="opacity-50" />
             
             {copyright && (
-              <div className="text-center text-sm text-muted-foreground">
+              <div className="text-center text-xs text-muted-foreground leading-tight">
                 {copyright}
               </div>
             )}

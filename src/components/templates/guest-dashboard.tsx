@@ -30,18 +30,10 @@ export function GuestDashboardTemplate({ userName, upcomingStay, wifi }: GuestDa
           {/* Quick actions */}
           <Section spacing="sm">
             <Cluster gap="md" justify="start" wrap>
-              <Button asChild>
-                <a href="#checkin">Check-in instructions</a>
-              </Button>
-              <Button asChild variant="secondary">
-                <a href="#contact">Contact host</a>
-              </Button>
-              <Button asChild variant="outline">
-                <a href="#directions">Directions</a>
-              </Button>
-              <Button asChild variant="ghost">
-                <a href="#itinerary">Add to calendar</a>
-              </Button>
+              <Button>Check-in instructions</Button>
+              <Button variant="secondary">Contact host</Button>
+              <Button variant="outline">Directions</Button>
+              <Button variant="ghost">Add to calendar</Button>
             </Cluster>
           </Section>
 
