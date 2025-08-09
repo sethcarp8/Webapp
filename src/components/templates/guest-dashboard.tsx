@@ -1,6 +1,7 @@
 import * as React from "react"
-import { Container, Section, Grid, Stack } from "@/components/layout"
+import { Container, Section, Grid, Stack, Cluster } from "@/components/layout"
 import { PageTitle, KeyValue, InfoCallout, UpsellCard, PropertyCard } from "@/components/content"
+import { Button } from "@/components/ui"
 
 export interface GuestDashboardTemplateProps {
   userName: string
@@ -11,25 +12,37 @@ export interface GuestDashboardTemplateProps {
     guests: number
     confirmationNumber: string
   }
-  messages: Array<{ id: number; subject: string; preview: string; date: string; unread?: boolean }>
+  wifi: { network: string; password: string }
 }
 
-export function GuestDashboardTemplate({ userName, upcomingStay, messages }: GuestDashboardTemplateProps) {
+export function GuestDashboardTemplate({ userName, upcomingStay, wifi }: GuestDashboardTemplateProps) {
   return (
     <div className="bg-background">
       <Container>
         <Stack gap="lg">
           <Section spacing="sm">
-            <PageTitle title={`Welcome back, ${userName}`} subtitle="Manage your stays and messages" />
+            <PageTitle
+              title={`Welcome, ${userName}`}
+              subtitle={`${upcomingStay.property} · ${upcomingStay.checkIn} – ${upcomingStay.checkOut}`}
+            />
           </Section>
 
-          {/* Quick actions (upsells) */}
+          {/* Quick actions */}
           <Section spacing="sm">
-            <Grid cols={3} className="gap-4">
-              <UpsellCard title="Late checkout" description="Extend your stay by 2 hours" cta={{ label: "Add", href: "#" }} />
-              <UpsellCard title="Mid-stay clean" description="Schedule an extra cleaning" cta={{ label: "Schedule", href: "#", variant: "secondary" }} />
-              <UpsellCard title="Airport pickup" description="Private transfer on arrival" cta={{ label: "Book", href: "#", variant: "outline" }} />
-            </Grid>
+            <Cluster gap="md" justify="start" wrap>
+              <Button asChild>
+                <a href="#checkin">Check-in instructions</a>
+              </Button>
+              <Button asChild variant="secondary">
+                <a href="#contact">Contact host</a>
+              </Button>
+              <Button asChild variant="outline">
+                <a href="#directions">Directions</a>
+              </Button>
+              <Button asChild variant="ghost">
+                <a href="#itinerary">Add to calendar</a>
+              </Button>
+            </Cluster>
           </Section>
 
           {/* Details grid */}
@@ -46,33 +59,33 @@ export function GuestDashboardTemplate({ userName, upcomingStay, messages }: Gue
                   { label: "Check-out", value: upcomingStay.checkOut },
                   { label: "Guests", value: String(upcomingStay.guests) },
                   { label: "Confirmation", value: upcomingStay.confirmationNumber },
+                  { label: "Wi‑Fi Network", value: wifi.network },
+                  { label: "Wi‑Fi Password", value: wifi.password },
                 ]} />
               </div>
             </Grid>
           </Section>
 
+          {/* Upsells */}
           <Section spacing="sm">
-            <Stack gap="sm">
-              <h3 className="font-semibold">Messages</h3>
-              <div className="space-y-3">
-                {messages.map((m) => (
-                  <div key={m.id} className="p-4 rounded-md border">
-                    <div className="flex items-center justify-between">
-                      <p className="font-medium">{m.subject}</p>
-                      <span className="text-xs text-muted-foreground">{m.date}</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground">{m.preview}</p>
-                  </div>
-                ))}
-              </div>
-            </Stack>
+            <Grid cols={3} className="gap-4">
+              <UpsellCard title="Late checkout" description="Extend your stay by 2 hours" cta={{ label: "Add", href: "#" }} />
+              <UpsellCard title="Mid-stay clean" description="Schedule an extra cleaning" cta={{ label: "Schedule", href: "#", variant: "secondary" }} />
+              <UpsellCard title="Airport pickup" description="Private transfer on arrival" cta={{ label: "Book", href: "#", variant: "outline" }} />
+            </Grid>
           </Section>
 
           {/* Contact */}
           <Section spacing="sm">
-            <InfoCallout title="Need help?" tone="info">
-              Our support team is available 24/7 for any questions about your stay.
-            </InfoCallout>
+            <Stack gap="sm">
+              <InfoCallout title="Need help?" tone="info">
+                Our support team is available 24/7 for any questions about your stay.
+              </InfoCallout>
+              <Cluster gap="sm">
+                <Button asChild variant="secondary"><a id="contact" href="tel:+18085551234">Call support</a></Button>
+                <Button asChild variant="outline"><a href="mailto:support@kauaipropertysolutions.com">Email support</a></Button>
+              </Cluster>
+            </Stack>
           </Section>
         </Stack>
       </Container>

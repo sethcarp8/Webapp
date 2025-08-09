@@ -3,11 +3,14 @@ import { GuestDashboardTemplate, OrderConfirmationTemplate, AdminArrivalsTemplat
 
 const demoGuest = {
   userName: "Sarah Johnson",
-  upcomingStay: { property: "Beachfront Villa - Poipu", checkIn: "2024-03-15", checkOut: "2024-03-22", guests: 4, confirmationNumber: "KPS-2024-001" },
-  messages: [
-    { id: 1, subject: "Welcome to your stay", preview: "We’re excited to host you...", date: "2024-03-10", unread: true },
-    { id: 2, subject: "Property access", preview: "Your instructions are ready...", date: "2024-03-08" },
-  ],
+  upcomingStay: {
+    property: "Beachfront Villa - Poipu",
+    checkIn: "Mar 15, 2024",
+    checkOut: "Mar 22, 2024",
+    guests: 4,
+    confirmationNumber: "KPS-2024-001",
+  },
+  wifi: { network: "KPS-Guest", password: "Aloha2024!" },
 }
 
 const demoOrder = {
@@ -37,7 +40,7 @@ export default function TemplatesPage() {
         <Card>
           <CardHeader>
             <CardTitle>Guest Dashboard</CardTitle>
-            <CardDescription>Summary header, quick actions, details, and messages</CardDescription>
+            <CardDescription>Summary header, quick actions, details, upsells, and contact</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <GuestDashboardTemplate {...demoGuest} />
