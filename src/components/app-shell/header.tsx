@@ -21,7 +21,7 @@ const Header = React.forwardRef<HTMLElement, HeaderProps>(
         {...props}
       >
         <Container>
-          <Inline className="h-16 items-center justify-between">
+            <Inline className="h-16 items-center justify-between">
             <div className="flex items-center gap-6">
               {logo && (
                 <div className="flex items-center">
@@ -35,7 +35,7 @@ const Header = React.forwardRef<HTMLElement, HeaderProps>(
               )}
             </div>
             
-            <Inline className="items-center gap-4">
+            <Inline className="items-center gap-4 relative z-50">
               {actions}
               <ThemeToggle />
             </Inline>
