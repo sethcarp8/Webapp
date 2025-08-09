@@ -38,6 +38,11 @@ export default function ContrastPage() {
       <div>
         <h1 className="text-3xl font-bold">Contrast</h1>
         <p className="text-muted-foreground">Accessible text/background color pairs for light and dark themes with computed ratios.</p>
+        <ul className="text-sm text-muted-foreground list-disc ml-5 mt-2 space-y-1">
+          <li>On <code>--background</code> or <code>--card</code>, use <strong>foreground</strong> for primary text; use muted-foreground for secondary text.</li>
+          <li>On <code>--primary</code>, use <strong>primary-foreground</strong> for text/icons.</li>
+          <li>Interactive focus indicators use the <strong>ring</strong> token and meet minimum contrast.</li>
+        </ul>
       </div>
 
       <section>

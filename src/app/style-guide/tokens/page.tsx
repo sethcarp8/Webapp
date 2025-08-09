@@ -7,6 +7,10 @@ export default function TokensPage() {
       <div>
         <h1 className="text-3xl font-bold">Design Tokens</h1>
         <p className="text-muted-foreground">Canonical scales for color, typography, spacing, radius, elevation, motion, and z-index.</p>
+        <div className="mt-2 text-sm text-muted-foreground">
+          <p className="mb-1"><strong>Brand palette</strong>: Primary is ocean blue (primary-500), with lighter/darker steps for hover/active. Neutral grays define surfaces and text.</p>
+          <p><strong>Usage</strong>: Use <code>--foreground</code> on <code>--background</code> surfaces; <code>--primary-foreground</code> on <code>--primary</code> buttons/links; muted text on muted surfaces. Focus rings use the <code>--ring</code> token.</p>
+        </div>
       </div>
 
       {/* Colors */}
